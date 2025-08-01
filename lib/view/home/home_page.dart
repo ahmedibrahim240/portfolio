@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
             Text('Home Page', style: context.textStyle.titleSmBold),
             BlocBuilder<ThemeCubit, bool>(
               builder: (context, state) {
-                return Switch.adaptive(
+                return Switch(
                   value: state,
                   onChanged: (value) {
                     context.read<ThemeCubit>().updateThemeMode(value);

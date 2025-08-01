@@ -4,18 +4,17 @@ import 'package:my_portfolio/core/themes/app_colors.dart';
 class AppTheme {
   static final ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.scaffoldDarkBg,
+    useMaterial3: true,
     primaryColor: AppColors.primary,
     brightness: Brightness.dark,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.primary200,
-      brightness: Brightness.dark,
+    colorScheme: ColorScheme.dark(
+      primary: AppColors.primary,
+      surface: AppColors.scaffoldDarkBg,
+      onSurface: AppColors.gray[100]!,
     ),
 
     appBarTheme: AppBarTheme(backgroundColor: AppColors.gray[900]),
-    textTheme: ThemeData.light().textTheme.apply(
-      bodyColor: AppColors.gray[100],
-      displayColor: AppColors.gray[100],
-    ),
+
     switchTheme: SwitchThemeData(
       padding: EdgeInsets.zero,
 
@@ -27,20 +26,15 @@ class AppTheme {
         if (states.contains(WidgetState.selected)) {
           return AppColors.primary200.withValues(alpha: .3);
         }
-        return AppColors.gray[200]!; // Figma OFF color
+        return AppColors.gray[100]!; // Figma OFF color
       }),
-      trackColor: WidgetStateProperty.resolveWith<Color>((states) {
-        if (states.contains(WidgetState.selected)) {
-          return AppColors.primary200.withValues(alpha: .3);
-        }
-        return AppColors.gray[200]!; // Figma OFF color
-      }),
+      trackColor: WidgetStateProperty.all<Color>(Colors.transparent),
 
       thumbColor: WidgetStateProperty.resolveWith<Color>((states) {
         if (states.contains(WidgetState.selected)) {
           return AppColors.primary200;
         }
-        return AppColors.gray[500]!; // Figma OFF color
+        return AppColors.gray[100]!; // Figma OFF color
       }),
     ),
   );
@@ -48,13 +42,12 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.scaffoldLightBg,
     primaryColor: AppColors.primary,
     brightness: Brightness.light,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.primary200,
-      brightness: Brightness.light,
-    ),
-    textTheme: ThemeData.dark().textTheme.apply(
-      bodyColor: AppColors.gray[900],
-      displayColor: AppColors.gray[900],
+    useMaterial3: true,
+
+    colorScheme: ColorScheme.light(
+      primary: AppColors.primary,
+      surface: AppColors.scaffoldLightBg,
+      onSurface: AppColors.gray[900]!,
     ),
     appBarTheme: AppBarTheme(backgroundColor: AppColors.gray[900]),
     switchTheme: SwitchThemeData(
@@ -66,22 +59,17 @@ class AppTheme {
 
       trackOutlineColor: WidgetStateProperty.resolveWith<Color>((states) {
         if (states.contains(WidgetState.selected)) {
-          return AppColors.primary200.withValues(alpha: .3);
+          return AppColors.primary200;
         }
-        return AppColors.gray[200]!;
+        return AppColors.gray[400]!;
       }),
-      trackColor: WidgetStateProperty.resolveWith<Color>((states) {
-        if (states.contains(WidgetState.selected)) {
-          return AppColors.primary200.withValues(alpha: .3);
-        }
-        return AppColors.gray[200]!;
-      }),
+      trackColor: WidgetStateProperty.all<Color>(Colors.transparent),
 
       thumbColor: WidgetStateProperty.resolveWith<Color>((states) {
         if (states.contains(WidgetState.selected)) {
           return AppColors.primary200;
         }
-        return AppColors.gray[500]!; // Figma OFF color
+        return AppColors.gray[400]!;
       }),
     ),
   );
