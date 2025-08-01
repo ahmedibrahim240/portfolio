@@ -81,7 +81,7 @@ class _DrawerMenuState extends State<DrawerMenu> with SingleTickerProviderStateM
         child: SlideTransition(
           position: _animation,
           child: Container(
-            alignment: AlignmentDirectional.centerStart,
+            alignment: AlignmentDirectional.center,
             decoration: BoxDecoration(
               color: context.theme.colorScheme.surface,
               boxShadow: [
@@ -93,8 +93,8 @@ class _DrawerMenuState extends State<DrawerMenu> with SingleTickerProviderStateM
               ],
             ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: AppMenuModel.menuList
                   .map(
                     (e) =>

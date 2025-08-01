@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/widget/backgraund_blur.dart';
 import 'package:my_portfolio/view/app_bar/ui/home_app_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -6,8 +7,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SingleChildScrollView(child: Column(children: [HomeAppBar()])),
-    );
+    return const Scaffold(body: Stack(children: [BackgraundBlur(), HomeAppBar()]));
   }
 }

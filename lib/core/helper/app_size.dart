@@ -3,6 +3,8 @@ class AppSize {
   static double get medSized => 12;
   static double get smallSized => 8;
   static double get xsSized => 4;
+  static double get xxxl => 80;
+  static double get xl => 24;
 }
 
 abstract class AppInsets {

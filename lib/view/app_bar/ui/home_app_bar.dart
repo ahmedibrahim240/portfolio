@@ -16,7 +16,7 @@ class HomeAppBar extends StatelessWidget {
       children: [
         AnimatedContainer(
           duration: const Duration(milliseconds: 200),
-          color: context.theme.customColors.background,
+          color: context.theme.appBarTheme.backgroundColor?.withValues(alpha: 0.1),
           height: context.insets.appBarHeight,
           alignment: Alignment.center,
           padding: EdgeInsets.symmetric(
