@@ -5,6 +5,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:my_portfolio/core/di/dependency_injection.dart';
 import 'package:my_portfolio/core/themes/app_theme.dart';
 import 'package:my_portfolio/core/themes/cubit/theme_cubit.dart';
+import 'package:my_portfolio/view/app_bar/logic/cubit/drawer_menu_cubit.dart';
 import 'package:my_portfolio/view/home/home_page.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -26,8 +27,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<ThemeCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => getIt<ThemeCubit>()),
+        BlocProvider(create: (context) => getIt<DrawerMenuCubit>()),
+      ],
       child: BlocBuilder<ThemeCubit, bool>(
         builder: (context, state) {
           return MaterialApp(
