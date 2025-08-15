@@ -4,6 +4,7 @@ class AppSize {
   static double get smallSized => 8;
   static double get xsSized => 4;
   static double get xxxl => 80;
+  static double get xxl => 40;
   static double get xl => 24;
 }
 

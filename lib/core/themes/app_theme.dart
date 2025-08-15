@@ -50,6 +50,7 @@ class AppTheme {
       style: ButtonStyle(
         fixedSize: const WidgetStatePropertyAll(Size.fromHeight(40)),
         backgroundColor: _primaryButtonStates,
+        foregroundColor: _primaryforegroundColor,
         padding: WidgetStatePropertyAll(
           EdgeInsets.symmetric(horizontal: AppSize.medSized, vertical: 10),
         ),
@@ -60,6 +61,8 @@ class AppTheme {
       style: ButtonStyle(
         fixedSize: const WidgetStatePropertyAll(Size.fromHeight(40)),
         side: _outlineButtonStates,
+        foregroundColor: _outlineforegroundColor,
+
         padding: WidgetStatePropertyAll(
           EdgeInsets.symmetric(horizontal: AppSize.medSized, vertical: 10),
         ),
@@ -89,6 +92,7 @@ class AppTheme {
       style: ButtonStyle(
         fixedSize: const WidgetStatePropertyAll(Size.fromHeight(40)),
         backgroundColor: _primaryButtonStates,
+        foregroundColor: _primaryforegroundColor,
         padding: WidgetStatePropertyAll(
           EdgeInsets.symmetric(horizontal: AppSize.medSized, vertical: 10),
         ),
@@ -99,6 +103,7 @@ class AppTheme {
       style: ButtonStyle(
         fixedSize: const WidgetStatePropertyAll(Size.fromHeight(40)),
         side: _outlineButtonStates,
+        foregroundColor: _outlineforegroundColor,
         padding: WidgetStatePropertyAll(
           EdgeInsets.symmetric(horizontal: AppSize.medSized, vertical: 10),
         ),
@@ -135,11 +140,23 @@ class AppTheme {
     }
     return AppColors.primary;
   });
+  static final _primaryforegroundColor = WidgetStateProperty.resolveWith<Color>((states) {
+    if (states.contains(WidgetState.hovered) || states.contains(WidgetState.pressed)) {
+      return AppColors.scaffoldLightBg.withValues(alpha: .7);
+    }
+    return AppColors.scaffoldLightBg;
+  });
   static final _outlineButtonStates = WidgetStateProperty.resolveWith((states) {
     if (states.contains(WidgetState.hovered) || states.contains(WidgetState.pressed)) {
       return BorderSide(color: AppColors.primary.withValues(alpha: .7));
     }
     return const BorderSide(color: AppColors.primary);
+  });
+  static final _outlineforegroundColor = WidgetStateProperty.resolveWith((states) {
+    if (states.contains(WidgetState.hovered) || states.contains(WidgetState.pressed)) {
+      return AppColors.primary.withValues(alpha: .7);
+    }
+    return AppColors.primary;
   });
 
   static WidgetStatePropertyAll<TextStyle?>? get _dartElvatedButtonTextStyle =>

@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/core/helper/app_size.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
 import 'package:my_portfolio/core/themes/app_text_style.dart';
-import 'package:my_portfolio/view/app_bar/data/models/app_menu_models.dart';
-import 'package:my_portfolio/view/app_bar/logic/cubit/drawer_menu_cubit.dart';
-import 'package:my_portfolio/view/app_bar/logic/cubit/drawer_menu_state.dart';
+import 'package:my_portfolio/view/home/widget/app_bar/data/models/app_menu_models.dart';
+import 'package:my_portfolio/view/home/widget/app_bar/logic/cubit/drawer_menu_cubit.dart';
+import 'package:my_portfolio/view/home/widget/app_bar/logic/cubit/drawer_menu_state.dart';
 
 class MenuItem extends StatelessWidget {
   final String title;

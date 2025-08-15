@@ -22,6 +22,7 @@ extension StyleHelper on BuildContext {
   bool get isMobile => getDseviceType == DeviceType.mobile;
   bool get isTablet => getDseviceType == DeviceType.tablet;
   bool get isDesktop => getDseviceType == DeviceType.desktop;
+  bool get isDesktopOrTablet => isDesktop || isTablet;
   AppTextStyle get textStyle {
     switch (getDseviceType) {
       case DeviceType.mobile:

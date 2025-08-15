@@ -11,7 +11,7 @@ class BackgraundBlur extends StatelessWidget {
       start: -(context.width / 2 / 2),
       top: -(context.width / 2 / 2) + AppSize.xxxl,
       child: Container(
-        height: context.height / 2,
+        height: context.height / 2 + AppSize.xxxl,
         width: context.width / 2,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
