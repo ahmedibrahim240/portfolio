@@ -1,6 +1,9 @@
+import 'package:my_portfolio/core/helper/image_assets_path.dart';
+
 class ProjectModels {
   final String name;
   final String period;
+  final List<String> images;
   final String? playStoreLink;
   final String? playStoreLink2;
   final String? appStoreLink;
@@ -12,6 +15,7 @@ class ProjectModels {
     required this.period,
     this.playStoreLink,
     this.playStoreLink2,
+    this.images = const [],
     this.appStoreLink,
     this.description,
     required this.technologies,
@@ -24,17 +28,18 @@ final List<ProjectModels> allProjects = [
   ProjectModels(
     name: 'Tayaar',
     period: '04/2025 - Present',
+    images: AssetsImagePath.getTayaarImages,
     playStoreLink: 'TAYAAR',
     appStoreLink: 'TAYAAR',
     description:
         'An intelligent Delivery management system designed specifically for Salla platform merchants',
     technologies: [
+      "flavors",
+      'Google Maps',
+      'Firebase CLI',
+      'Biometric Login',
       'State Management: Bloc',
       'Firebase Push Notification',
-      'Firebase CLI',
-      'Google Maps',
-      'Biometric Login',
-      "flavors",
     ],
   ),
   // Try GC
@@ -45,12 +50,12 @@ final List<ProjectModels> allProjects = [
     appStoreLink: 'Try GC',
     description: 'Two apps in one app switching between them by user type after login',
     technologies: [
-      'State Management: GetX',
-      'Firebase Push Notification',
-      'Firebase CLI',
-      'Google Maps integration',
-      'Location services',
       "flavors",
+      'Firebase CLI',
+      'Location services',
+      'State Management: GetX',
+      'Google Maps integration',
+      'Firebase Push Notification',
     ],
   ),
   // Elite App
@@ -62,12 +67,12 @@ final List<ProjectModels> allProjects = [
     description: 'Two apps in one app switching between them by user type after login',
 
     technologies: [
-      'State Management: GetX',
-      'Firebase Push Notification',
-      'Firebase CLI',
-      'Google Maps integration',
-      'Location services',
       "flavors",
+      'Firebase CLI',
+      'Location services',
+      'State Management: GetX',
+      'Google Maps integration',
+      'Firebase Push Notification',
     ],
   ),
   // iKhair for Donation
@@ -80,12 +85,12 @@ final List<ProjectModels> allProjects = [
     description:
         'The first donation app in UAE. Developed for paying zakat and making donations via SMS, Credit card, and Bank account. Raised more than 13 million durham for over 150 charitable projects and urgent cases.',
     technologies: [
-      'State Management: GetX',
-      'Firebase Push Notifications',
-      'Firebase Social Media Login',
-      'Local Notifications for prayer times and campaigns',
-      'Native Deep Linking',
       "flavors",
+      'Native Deep Linking',
+      'State Management: GetX',
+      'Firebase Social Media Login',
+      'Firebase Push Notifications',
+      'Local Notifications for prayer times and campaigns',
     ],
   ),
   // Tyasart
@@ -99,12 +104,12 @@ final List<ProjectModels> allProjects = [
     description:
         'An app to help disabled people with two separate apps in one (client and companion)',
     technologies: [
-      'State Management: GetX',
+      "flavors",
       'Payment Integration',
+      'State Management: GetX',
+      'Firebase Push Notifications',
       'Live Chat between Client and Companion',
       'Real-time Location Tracking with Google Maps',
-      'Firebase Push Notifications',
-      "flavors",
     ],
   ),
 ];
