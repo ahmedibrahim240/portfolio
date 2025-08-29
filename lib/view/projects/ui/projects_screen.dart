@@ -9,23 +9,23 @@ class ProjectsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
+    return Container(
       constraints: BoxConstraints(
-        maxHeight: context.height * .71,
-        minHeight: context.height * .3,
+        maxHeight: context.isTablet ? 400 : 550,
+        minHeight: context.isTablet ? 100 : 300,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppText('Projects', style: context.textStyle.titleLgBold),
-          Expanded(
+          const Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
               child: Visibility(
-                visible: context.isDesktop,
-                replacement: const ProiectsDesktop(),
-                child: const ProiectsDesktop(),
+                // visible: context.isDesktop,
+                // replacement: const ProiectsDesktop(),
+                child: ProiectsDesktop(),
               ),
             ),
           ),

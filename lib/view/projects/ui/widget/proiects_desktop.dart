@@ -10,35 +10,28 @@ class ProiectsDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-        maxHeight: context.isDesktopOrTablet
-            ? context.height * .75
-            : context.height * .45,
-      ),
-      child: LayoutBuilder(
-        builder: (context, boxCont) {
-          return CarouselSlider(
-            options: CarouselOptions(
-              height: boxCont.maxHeight * .75,
-              viewportFraction: context.isMobile ? 1 : .33,
+    return LayoutBuilder(
+      builder: (context, boxCont) {
+        return CarouselSlider(
+          options: CarouselOptions(
+            height: boxCont.maxHeight,
+            viewportFraction: context.isMobile ? .85 : .33,
 
-              enlargeCenterPage: true,
-              autoPlay: false,
-              autoPlayAnimationDuration: const Duration(milliseconds: 500),
-              enableInfiniteScroll: true,
-              disableCenter: true,
-            ),
-            items: allProjects.map((project) {
-              return Visibility(
-                // visible: context.isDesktop,
-                // replacement: ProjectItemCardMoble(project: project),
-                child: ProjectItemCard(project: project),
-              );
-            }).toList(),
-          );
-        },
-      ),
+            enlargeCenterPage: true,
+            autoPlay: false,
+            autoPlayAnimationDuration: const Duration(milliseconds: 500),
+            enableInfiniteScroll: true,
+            disableCenter: true,
+          ),
+          items: allProjects.map((project) {
+            return Visibility(
+              // visible: context.isDesktop,
+              // replacement: ProjectItemCardMoble(project: project),
+              child: ProjectItemCard(project: project),
+            );
+          }).toList(),
+        );
+      },
     );
   }
 }

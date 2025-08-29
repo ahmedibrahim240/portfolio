@@ -23,7 +23,7 @@ class ProjectItemCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AspectRatio(
-            aspectRatio: 1.5,
+            aspectRatio: 1.8,
             child: Visibility(
               visible: project.images.isNotEmpty,
               replacement: Container(color: Colors.amber),
