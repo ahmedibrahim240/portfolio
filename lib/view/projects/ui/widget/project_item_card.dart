@@ -2,6 +2,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
 import 'package:my_portfolio/core/themes/app_colors.dart';
@@ -23,13 +24,13 @@ class ProjectItemCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AspectRatio(
-            aspectRatio: 1.8,
+            aspectRatio: 1.6,
             child: Visibility(
               visible: project.images.isNotEmpty,
               replacement: Container(color: Colors.amber),
               child: CarouselSlider(
                 options: CarouselOptions(
-                  viewportFraction: .33,
+                  viewportFraction: .3,
 
                   enlargeCenterPage: true,
                   autoPlay: false,
@@ -39,8 +40,14 @@ class ProjectItemCard extends StatelessWidget {
                 ),
                 items: project.images.map((image) {
                   return ClipRRect(
-                    borderRadius: BorderRadiusGeometry.circular(16),
-                    child: Image.asset(image, fit: BoxFit.fill),
+                    borderRadius: BorderRadiusGeometry.circular(5),
+                    child: SvgPicture.asset(image, fit: BoxFit.cover),
+                    // child: Image(
+                    //   image: AssetImage(image),
+                    //   filterQuality: FilterQuality.high,
+                    //   isAntiAlias: true,
+                    //   fit: BoxFit.fill,
+                    // ),
                   );
                 }).toList(),
               ),

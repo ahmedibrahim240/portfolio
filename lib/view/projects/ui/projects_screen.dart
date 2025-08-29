@@ -11,8 +11,8 @@ class ProjectsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        maxHeight: context.isTablet ? 400 : 550,
-        minHeight: context.isTablet ? 100 : 300,
+        maxHeight: context.isTablet ? 500 : 610,
+        minHeight: context.isTablet ? 200 : 400,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

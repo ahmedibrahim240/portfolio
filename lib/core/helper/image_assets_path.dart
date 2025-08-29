@@ -7,6 +7,6 @@ class AssetsImagePath {
       List.generate(7, (index) => _getTayaarImgePath("${index + 1}"));
 
   static String _getTayaarImgePath(String fileName) {
-    return "$imageTayaarAssetsRoot$fileName.png";
+    return "$imageTayaarAssetsRoot$fileName.svg";
   }
 }
