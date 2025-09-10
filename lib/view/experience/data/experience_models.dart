@@ -15,13 +15,13 @@ class ExperienceModels {
 }
 
 // Sample data
-final List<ExperienceModels> experiences = [
+final List<ExperienceModels> experiencesList = [
   ExperienceModels(
     title: 'Flutter Developer (part-time)',
-    company: 'Beta Lab for Information Technology LLC',
+    company: 'Beta Lab IT (LLC)',
     location: 'Saudi Arabia',
     period: '04/2025 - Present',
-    website: 'trytayaar',
+    website: 'https://dev.trytayaar.com/',
   ),
   ExperienceModels(
     title: 'Flutter Developer',

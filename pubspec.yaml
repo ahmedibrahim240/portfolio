@@ -18,10 +18,12 @@ dependencies:
   bloc: ^9.0.0
   carousel_slider: ^5.1.1
   cupertino_icons: ^1.0.8
+  dotted_line: ^3.2.3
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
   flutter_svg: ^2.2.0
+  font_awesome_flutter: ^10.5.0
   freezed: ^3.2.0
   freezed_annotation: ^3.1.0
   gap: ^3.0.1

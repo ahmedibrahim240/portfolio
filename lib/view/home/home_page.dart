@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:my_portfolio/core/helper/app_size.dart';
 import 'package:my_portfolio/core/widget/backgraund_blur.dart';
 import 'package:my_portfolio/view/about/ui/about_me_page.dart';
+import 'package:my_portfolio/view/experience/ui/experience_screen.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/ui/home_app_bar.dart';
-import 'package:my_portfolio/view/projects/ui/projects_screen.dart';
+
+import '../projects/ui/projects_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -26,7 +29,14 @@ class HomePage extends StatelessWidget {
                   end: AppSize.smallSized,
                 ),
                 child: const SingleChildScrollView(
-                  child: Column(children: [AboutMePage(), ProjectsScreen()]),
+                  child: Column(
+                    children: [
+                      AboutMePage(),
+                      ExperienceScreen(),
+                      ProjectsScreen(),
+                      Gap(100),
+                    ],
+                  ),
                 ),
               ),
             ),

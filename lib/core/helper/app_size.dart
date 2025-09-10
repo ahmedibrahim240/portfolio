@@ -6,12 +6,14 @@ class AppSize {
   static double get xxxl => 80;
   static double get xxl => 40;
   static double get xl => 24;
+  static double get lg => 24;
 }
 
 abstract class AppInsets {
   double get horizontalPadding;
   double get verticalPadding;
   double get appBarHeight;
+  double get cardPadding;
 }
 
 class LargeInsets implements AppInsets {
@@ -23,6 +25,9 @@ class LargeInsets implements AppInsets {
 
   @override
   double get appBarHeight => 64;
+
+  @override
+  double get cardPadding => AppSize.xl;
 }
 
 class MediumInsets implements AppInsets {
@@ -34,6 +39,9 @@ class MediumInsets implements AppInsets {
 
   @override
   double get appBarHeight => 56;
+
+  @override
+  double get cardPadding => AppSize.lg;
 }
 
 class SmallInsets implements AppInsets {
@@ -45,4 +53,7 @@ class SmallInsets implements AppInsets {
 
   @override
   double get appBarHeight => 52;
+
+  @override
+  double get cardPadding => AppSize.lg;
 }
