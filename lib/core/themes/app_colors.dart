@@ -29,3 +29,18 @@ class AppColors {
   static const Color scaffoldDarkBg = Color(0xFF110D12);
   static const Color scaffoldLightBg = Color(0xFFFBFBFB);
 }
+// Based on the logo, here are the primary colors and their hex codes:
+
+// Black Background (main circle): #000000
+
+// Dark Blue/Teal (circuit lines and outer hexagonal frame): Around #0D8AF0 to #1FE1FC (it has a slight gradient, but this is a good average)
+
+// "AI" Initials Gradient (from purple to blue):
+
+// Darker Purple: Around #4F11A4
+
+// Mid-tone Blue: Around #1B6AFB
+
+// Lighter Blue/Cyan: Around #2EE8F0
+
+// White Text ("AHMED IBRAHIM" / "SR FLUTTER DEVELOPER"): #FFFFFF
