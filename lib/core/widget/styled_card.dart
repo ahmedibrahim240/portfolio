@@ -26,6 +26,7 @@ class _StyledCardState extends State<StyledCard> {
       width: widget.width,
       height: widget.height,
       padding: widget.padding ?? EdgeInsets.all(context.insets.cardPadding),
+      alignment: Alignment.topCenter,
       decoration: BoxDecoration(
         border: Border.all(color: context.theme.colorScheme.outline),
         color: context.theme.colorScheme.surface,
