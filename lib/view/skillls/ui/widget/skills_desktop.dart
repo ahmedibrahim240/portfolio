@@ -17,6 +17,7 @@ class SkillsDesktop extends StatelessWidget {
       delegate: SliverChildBuilderDelegate((context, index) {
         var item = kAboutMe.skills[index];
         return StyledCard(
+          borderEffect: false,
           child: Text(
             item.name,
             textAlign: TextAlign.center,

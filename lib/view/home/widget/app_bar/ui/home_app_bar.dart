@@ -29,13 +29,9 @@ class HomeAppBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Ahmed Ibranim', style: context.textStyle.heading2),
+                const AppLogo(),
                 const Spacer(),
-                if (context.isDesktop)
-                  ...AppMenuModel.menuList.map(
-                    (e) =>
-                        MenuItem(onTap: () {}, title: e.title, isSelected: e.index == 0),
-                  ),
+                if (context.isDesktop) const DiskTopMenu(),
                 const Spacer(),
                 const ThemeToggle(),
                 if (!context.isDesktop) const AppBarDrawerIcon(),
@@ -45,6 +41,28 @@ class HomeAppBar extends StatelessWidget {
         ),
         if (!context.isDesktop) const DrawerMenu(),
       ],
+    );
+  }
+}
+
+class AppLogo extends StatelessWidget {
+  const AppLogo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text('Ahmed Ibranim', style: context.textStyle.heading2);
+  }
+}
+
+class DiskTopMenu extends StatelessWidget {
+  const DiskTopMenu({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: AppMenuModel.menuList
+          .map((e) => MenuItem(onTap: () {}, title: e.title, isSelected: e.index == 0))
+          .toList(),
     );
   }
 }

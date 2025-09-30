@@ -92,19 +92,25 @@ class _DrawerMenuState extends State<DrawerMenu> with SingleTickerProviderStateM
                 ),
               ],
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: AppMenuModel.menuList
-                  .map(
-                    (e) =>
-                        MenuItem(onTap: () {}, title: e.title, isSelected: e.index == 0),
-                  )
-                  .toList(),
-            ),
+            child: const MobileMenu(),
           ),
         ),
       ),
+    );
+  }
+}
+
+class MobileMenu extends StatelessWidget {
+  const MobileMenu({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: AppMenuModel.menuList
+          .map((e) => MenuItem(onTap: () {}, title: e.title, isSelected: e.index == 0))
+          .toList(),
     );
   }
 }

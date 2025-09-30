@@ -88,8 +88,9 @@ class ExperinceDesktop extends StatelessWidget {
   }
 }
 
-const expWidth = 310.0;
-const expHeight = 230.0;
+const expWidth = 300.0;
+const expHeight = 225.0;
+const expMobileHeight = 190.0;
 
 class ExperineceCardItem extends StatelessWidget {
   final ExperienceModels item;
@@ -105,49 +106,12 @@ class ExperineceCardItem extends StatelessWidget {
         Visibility(
           visible: isEven,
           child: SizedBox(
-            width: 100,
+            width: MediaQuery.of(context).size.width * .08,
             child: DottedLine(dashColor: context.theme.colorScheme.onBackground),
           ),
         ),
 
-        StyledCard(
-          height: expHeight,
-          width: expWidth,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                item.company,
-                style: context.textStyle.titleSmBold.copyWith(
-                  color: context.theme.colorScheme.onBackground,
-                ),
-              ),
-              Gap(context.insets.verticalPadding),
-
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BuildExpItemContent(data: item.title),
-                    Gap(context.insets.verticalPadding),
-                    BuildExpItemContent(data: item.period),
-                    Gap(context.insets.verticalPadding),
-                    BuildExpItemContent(data: item.location),
-                  ],
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional.bottomEnd,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(FontAwesomeIcons.globe, color: AppColors.primary200),
-                ),
-              ),
-            ],
-          ),
-        ),
+        ExperineceItem(item: item),
         Visibility(
           visible: !isEven,
           child: SizedBox(
@@ -156,6 +120,54 @@ class ExperineceCardItem extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class ExperineceItem extends StatelessWidget {
+  const ExperineceItem({super.key, required this.item});
+
+  final ExperienceModels item;
+
+  @override
+  Widget build(BuildContext context) {
+    return StyledCard(
+      height: context.isDesktop ? expHeight : expMobileHeight,
+      width: expWidth,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            item.company,
+            style: context.textStyle.titleSmBold.copyWith(
+              color: context.theme.colorScheme.onBackground,
+            ),
+          ),
+          Gap(context.insets.verticalPadding),
+
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                BuildExpItemContent(data: item.title),
+                Gap(context.insets.verticalPadding),
+                BuildExpItemContent(data: item.period),
+                Gap(context.insets.verticalPadding),
+                BuildExpItemContent(data: item.location),
+              ],
+            ),
+          ),
+          Align(
+            alignment: AlignmentDirectional.bottomEnd,
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(FontAwesomeIcons.globe, color: AppColors.primary200),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
-import 'package:my_portfolio/core/widget/app_text.dart';
+import 'package:my_portfolio/core/widget/home_sction_title.dart';
 import 'package:my_portfolio/view/experience/ui/widget/experince_desktop.dart';
+import 'package:my_portfolio/view/experience/ui/widget/experince_mobile.dart';
 
 class ExperienceBody extends StatelessWidget {
   const ExperienceBody({super.key});
@@ -13,11 +13,12 @@ class ExperienceBody extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppText('Experiences', style: context.textStyle.titleLgBold),
-        const Gap(10),
+        const HomeSctionTitle(title: 'Experiences'),
+
         Center(
           child: Visibility(
-            visible: context.isDesktopOrTablet,
+            visible: context.isDesktop,
+            replacement: const ExperinceMobile(),
             child: const ExperinceDesktop(),
           ),
         ),
