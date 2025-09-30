@@ -12,6 +12,22 @@ class Education {
   });
 }
 
+class ExperienceModels {
+  final String title;
+  final String company;
+  final String location;
+  final String period;
+  final String? website;
+
+  ExperienceModels({
+    required this.title,
+    required this.company,
+    required this.location,
+    required this.period,
+    this.website,
+  });
+}
+
 class SocialLinks {
   final String githubUrl;
   final String linkedinUrl;
@@ -45,7 +61,7 @@ class AboutMe {
   final String yearsOfExperience;
   final List<Skill> skills;
   final List<Education> education;
-
+  final List<ExperienceModels> experiences;
   const AboutMe({
     required this.fullName,
     required this.image,
@@ -59,11 +75,12 @@ class AboutMe {
     required this.yearsOfExperience,
     required this.skills,
     required this.education,
+    required this.experiences,
   });
 }
 
 // Constant instance populated with the provided data
-const AboutMe kAboutMe = AboutMe(
+AboutMe kAboutMe = AboutMe(
   fullName: 'Ahmed Ibrahim',
   image: 'assets/me.jpeg',
   title: 'Sr. Flutter Developer',
@@ -71,7 +88,7 @@ const AboutMe kAboutMe = AboutMe(
   city: 'Al Mansoura',
   email: 'ahmedibrahim150240@gmail.com',
   phone: '+201019507730',
-  social: SocialLinks(
+  social: const SocialLinks(
     githubUrl: 'https://github.com/ahmedibrahim240',
     linkedinUrl: 'https://www.linkedin.com/in/ahmed-ibrahim-6895a2205/',
     whatsappUrl: 'https://wa.me//+201551016887',
@@ -84,71 +101,94 @@ const AboutMe kAboutMe = AboutMe(
   yearsOfExperience: '5+',
   skills: <Skill>[
     // Brand icons via Simple Icons CDN
-    Skill(
+    const Skill(
       name: 'Flutter',
       imageUrl: 'https://cdn.jsdelivr.net/npm/simple-icons/icons/flutter.svg',
     ),
-    Skill(
+    const Skill(
       name: 'Dart',
       imageUrl: 'https://cdn.jsdelivr.net/npm/simple-icons/icons/dart.svg',
     ),
-    Skill(
+    const Skill(
       name: 'Firebase',
       imageUrl: 'https://cdn.jsdelivr.net/npm/simple-icons/icons/firebase.svg',
     ),
-    Skill(
+    const Skill(
       name: 'Google Maps',
       imageUrl: 'https://cdn.jsdelivr.net/npm/simple-icons/icons/googlemaps.svg',
     ),
 
     // Conceptual icons via Tabler Icons
-    Skill(
+    const Skill(
       name: 'Algorithms',
       imageUrl:
           'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/binary.svg',
     ),
-    Skill(
+    const Skill(
       name: 'OOP',
       imageUrl:
           'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/hierarchy-3.svg',
     ),
-    Skill(
+    const Skill(
       name: 'Data Structures',
       imageUrl:
           'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/tree.svg',
     ),
-    Skill(
+    const Skill(
       name: 'Databases',
       imageUrl:
           'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/database.svg',
     ),
-    Skill(
+    const Skill(
       name: 'State Management',
       imageUrl:
           'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/git-branch.svg',
     ),
-    Skill(
+    const Skill(
       name: 'GetX',
       imageUrl:
           'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/bolt.svg',
     ),
-    Skill(
+    const Skill(
       name: 'BLoC',
       imageUrl:
           'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/puzzle.svg',
     ),
-    Skill(
+    const Skill(
       name: 'REST API',
       imageUrl:
           'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/api.svg',
     ),
   ],
   education: <Education>[
-    Education(
+    const Education(
       degree: "Bachelor's Degree in Statistics And Computer Science",
       faculty: 'Faculty of Science',
       location: 'Mansoura, Egypt',
       graduationDate: '10/2020',
+    ),
+  ],
+  experiences: [
+    ExperienceModels(
+      title: 'Flutter Developer (part-time)',
+      company: 'Beta Lab IT (LLC)',
+      location: 'Saudi Arabia',
+      period: '04/2025 - Present',
+      website: 'https://dev.trytayaar.com/',
+    ),
+    ExperienceModels(
+      title: 'Flutter Developer',
+      company: 'Grand Community',
+      location: 'Mansoura, Egypt',
+      period: '07/2023 - Present',
+      website: 'https://grand-community.com/en',
+    ),
+    ExperienceModels(
+      title: 'Flutter Developer',
+      company: 'Appgain.io',
+      location: 'Eldoky, Egypt',
+      period: '03/2022 - 07/2023',
+      website: 'https://www.appgain.io/',
     ),
   ],
 );

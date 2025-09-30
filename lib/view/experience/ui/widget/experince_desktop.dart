@@ -7,9 +7,9 @@ import 'package:gap/gap.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
 import 'package:my_portfolio/core/themes/app_colors.dart';
 import 'package:my_portfolio/core/widget/styled_card.dart';
-import 'package:my_portfolio/view/experience/data/experience_models.dart';
+import 'package:my_portfolio/view/about/models/about_me_models.dart';
 
-final expLen = experiencesList.length;
+final expLen = kAboutMe.experiences.length;
 final scaleFA = 150.0;
 final expPointSize = 16.0;
 final expPointFA = expHeight / 2 - expPointSize / 2;
@@ -48,14 +48,14 @@ class ExperinceDesktop extends StatelessWidget {
                 top: i * scaleFA,
                 start: 400,
                 end: 0,
-                child: ExperineceCardItem(item: experiencesList[i], isEven: true),
+                child: ExperineceCardItem(item: kAboutMe.experiences[i], isEven: true),
               )
             else
               PositionedDirectional(
                 top: i * scaleFA,
                 end: 400,
                 start: 0,
-                child: ExperineceCardItem(item: experiencesList[i], isEven: false),
+                child: ExperineceCardItem(item: kAboutMe.experiences[i], isEven: false),
               ),
 
             PositionedDirectional(
