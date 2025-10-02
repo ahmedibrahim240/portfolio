@@ -29,7 +29,7 @@ class _LargeHero extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Expanded(child: HeroImage()),
+        const Expanded(child: HeroImageAnmatied()),
         Gap(AppSize.xxxl),
         const Expanded(flex: 2, child: HeroText()),
       ],
@@ -46,7 +46,7 @@ class _SmallHero extends StatelessWidget {
       children: [
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 140),
-          child: const HeroImage(),
+          child: const HeroImageAnmatied(),
         ),
         Gap(AppSize.xl),
         const HeroText(),
