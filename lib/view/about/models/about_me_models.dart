@@ -1,3 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
+import 'package:my_portfolio/core/helper/image_assets_path.dart';
+
+part 'about_me_models.g.dart';
+
+@JsonSerializable()
 class Education {
   final String degree;
   final String faculty;
@@ -10,8 +16,13 @@ class Education {
     required this.location,
     required this.graduationDate,
   });
+
+  factory Education.fromJson(Map<String, dynamic> json) => _$EducationFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EducationToJson(this);
 }
 
+@JsonSerializable()
 class ExperienceModels {
   final String title;
   final String company;
@@ -26,8 +37,14 @@ class ExperienceModels {
     required this.period,
     this.website,
   });
+
+  factory ExperienceModels.fromJson(Map<String, dynamic> json) =>
+      _$ExperienceModelsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ExperienceModelsToJson(this);
 }
 
+@JsonSerializable()
 class SocialLinks {
   final String githubUrl;
   final String linkedinUrl;
@@ -38,16 +55,13 @@ class SocialLinks {
     required this.linkedinUrl,
     required this.whatsappUrl,
   });
+
+  factory SocialLinks.fromJson(Map<String, dynamic> json) => _$SocialLinksFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SocialLinksToJson(this);
 }
 
-class Skill {
-  final String name;
-  final String? imageAsset; // e.g., assets/icons/flutter.png
-  final String? imageUrl; // optional network icon URL
-
-  const Skill({required this.name, this.imageAsset, this.imageUrl});
-}
-
+@JsonSerializable()
 class AboutMe {
   final String fullName;
   final String image;
@@ -59,10 +73,13 @@ class AboutMe {
   final SocialLinks social;
   final String summary;
   final String yearsOfExperience;
-  final List<Skill> skills;
+  final List<String> skills;
   final List<Education> education;
   final List<ExperienceModels> experiences;
+  final List<ProjectModels> projects;
+
   const AboutMe({
+    required this.projects,
     required this.fullName,
     required this.image,
     required this.title,
@@ -77,7 +94,154 @@ class AboutMe {
     required this.education,
     required this.experiences,
   });
+
+  factory AboutMe.fromJson(Map<String, dynamic> json) => _$AboutMeFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AboutMeToJson(this);
 }
+
+@JsonSerializable()
+class ProjectModels {
+  final String name;
+  final String period;
+  final List<String> images;
+  final String? playStoreLink;
+  final String? playStoreLink2;
+  final String? appStoreLink;
+  final String? description;
+  final List<String> technologies;
+
+  ProjectModels({
+    required this.name,
+    required this.period,
+    this.playStoreLink,
+    this.playStoreLink2,
+    this.images = const [],
+    this.appStoreLink,
+    this.description,
+    required this.technologies,
+  });
+  factory ProjectModels.fromJson(Map<String, dynamic> json) =>
+      _$ProjectModelsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProjectModelsToJson(this);
+}
+
+// List of all projects across all experiences
+final List<ProjectModels> allProjects = [
+  // Tayaar
+  ProjectModels(
+    name: 'Tayaar',
+    period: '04/2025 - Present',
+    images: AssetsImagePath.getTayaarImages,
+    playStoreLink: 'TAYAAR',
+    appStoreLink: 'TAYAAR',
+    description:
+        'An intelligent Delivery management system designed specifically for Salla platform merchants',
+    technologies: [
+      'REST API',
+      "flavors",
+      'Google Maps',
+      'Firebase CLI',
+      'Biometric Login',
+      'State Management: Bloc',
+      'Firebase Push Notification',
+    ],
+  ),
+  // Try GC
+  ProjectModels(
+    name: 'Try GC',
+    period: '07/2023 - 07/2024',
+    playStoreLink: 'Try GC',
+    appStoreLink: 'Try GC',
+    description: 'Two apps in one app switching between them by user type after login',
+    technologies: [
+      'REST API',
+      "flavors",
+      'Firebase CLI',
+      'Location services',
+      'State Management: GetX',
+      'Google Maps integration',
+      'Firebase Push Notification',
+    ],
+  ),
+  // Elite App
+  ProjectModels(
+    name: 'Elite App',
+    period: '10/2024 - Present',
+    playStoreLink: 'ELITE',
+    appStoreLink: 'ELITE',
+    description: 'Two apps in one app switching between them by user type after login',
+
+    technologies: [
+      'REST API',
+      "flavors",
+      'Firebase CLI',
+      'Location services',
+      'State Management: GetX',
+      'Google Maps integration',
+      'Firebase Push Notification',
+    ],
+  ),
+  // iKhair for Donation
+  ProjectModels(
+    name: 'iKhair for Donation',
+    period: '03/2022 - 05/2023',
+    playStoreLink:
+        'https://play.google.com/store/apps/details?id=com.quantatil.ikhar&pli=1',
+    appStoreLink: 'https://apps.apple.com/us/app/ikhair-for-donation/id542915812',
+    description:
+        'The first donation app in UAE. Developed for paying zakat and making donations via SMS, Credit card, and Bank account. Raised more than 13 million durham for over 150 charitable projects and urgent cases.',
+    technologies: [
+      'REST API',
+      "flavors",
+      'Native Deep Linking',
+      'State Management: GetX',
+      'Firebase Social Media Login',
+      'Firebase Push Notifications',
+      'Local Notifications for prayer times and campaigns',
+    ],
+  ),
+  // Tyasart
+  ProjectModels(
+    name: 'Tyasart Client',
+    period: '03/2024 - 06/2024',
+    images: AssetsImagePath.getTyasartClinetImages,
+
+    playStoreLink:
+        'https://play.google.com/store/apps/details?id=com.briefcode.tyasartclient',
+    description:
+        'App in test mode \n  An app to help disabled people with two separate apps in one (client and companion)',
+    technologies: [
+      'REST API',
+      "flavors",
+      'Payment Integration',
+      'State Management: GetX',
+      'Firebase Push Notifications',
+      'Live Chat between Client and Companion',
+      'Real-time Location Tracking with Google Maps',
+    ],
+  ),
+  // Tyasart
+  ProjectModels(
+    name: 'Tyasart Accompanying',
+    period: '03/2024 - 06/2024',
+    images: AssetsImagePath.getTyasartComImages,
+    playStoreLink:
+        'https://play.google.com/store/apps/details?id=com.briefcode.tyasartaccompanying',
+    description:
+        'App in test mode \n An app to help disabled people with two separate apps in one (client and companion)',
+    technologies: [
+      'REST API',
+      "flavors",
+      'Payment Integration',
+      'State Management: GetX',
+      'Firebase Push Notifications',
+      'Live Chat between Client and Companion',
+      'Real-time Location Tracking with Google Maps',
+    ],
+  ),
+];
 
 // Constant instance populated with the provided data
 AboutMe kAboutMe = AboutMe(
@@ -88,6 +252,7 @@ AboutMe kAboutMe = AboutMe(
   city: 'Al Mansoura',
   email: 'ahmedibrahim150240@gmail.com',
   phone: '+201019507730',
+  projects: allProjects,
   social: const SocialLinks(
     githubUrl: 'https://github.com/ahmedibrahim240',
     linkedinUrl: 'https://www.linkedin.com/in/ahmed-ibrahim-6895a2205/',
@@ -99,66 +264,19 @@ AboutMe kAboutMe = AboutMe(
       'Firebase, and Google Maps to ship scalable, maintainable features. '
       'Clear communicator focused on UX, performance, and on-time delivery.',
   yearsOfExperience: '5+',
-  skills: <Skill>[
-    // Brand icons via Simple Icons CDN
-    const Skill(
-      name: 'Flutter',
-      imageUrl: 'https://cdn.jsdelivr.net/npm/simple-icons/icons/flutter.svg',
-    ),
-    const Skill(
-      name: 'Dart',
-      imageUrl: 'https://cdn.jsdelivr.net/npm/simple-icons/icons/dart.svg',
-    ),
-    const Skill(
-      name: 'Firebase',
-      imageUrl: 'https://cdn.jsdelivr.net/npm/simple-icons/icons/firebase.svg',
-    ),
-    const Skill(
-      name: 'Google Maps',
-      imageUrl: 'https://cdn.jsdelivr.net/npm/simple-icons/icons/googlemaps.svg',
-    ),
-
-    // Conceptual icons via Tabler Icons
-    const Skill(
-      name: 'Algorithms',
-      imageUrl:
-          'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/binary.svg',
-    ),
-    const Skill(
-      name: 'OOP',
-      imageUrl:
-          'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/hierarchy-3.svg',
-    ),
-    const Skill(
-      name: 'Data Structures',
-      imageUrl:
-          'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/tree.svg',
-    ),
-    const Skill(
-      name: 'Databases',
-      imageUrl:
-          'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/database.svg',
-    ),
-    const Skill(
-      name: 'State Management',
-      imageUrl:
-          'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/git-branch.svg',
-    ),
-    const Skill(
-      name: 'GetX',
-      imageUrl:
-          'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/bolt.svg',
-    ),
-    const Skill(
-      name: 'BLoC',
-      imageUrl:
-          'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/puzzle.svg',
-    ),
-    const Skill(
-      name: 'REST API',
-      imageUrl:
-          'https://raw.githubusercontent.com/tabler/tabler-icons/master/icons/api.svg',
-    ),
+  skills: <String>[
+    'Flutter',
+    'Dart',
+    'Firebase',
+    'Google Maps',
+    'Algorithms',
+    'OOP',
+    'Data Structures',
+    'Databases',
+    'State Management',
+    'GetX',
+    'BLoC',
+    'REST API',
   ],
   education: <Education>[
     const Education(

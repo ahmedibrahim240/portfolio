@@ -1,9 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
+import 'package:my_portfolio/view/about/models/about_me_models.dart';
 import 'package:my_portfolio/view/projects/ui/widget/project_item_card.dart';
-
-import '../../data/projects_models.dart';
 
 class ProiectsDesktop extends StatelessWidget {
   const ProiectsDesktop({super.key});
@@ -23,7 +22,7 @@ class ProiectsDesktop extends StatelessWidget {
             enableInfiniteScroll: true,
             disableCenter: true,
           ),
-          items: allProjects.map((project) {
+          items: kAboutMe.projects.map((project) {
             return Visibility(
               // visible: context.isDesktop,
               // replacement: ProjectItemCardMoble(project: project),

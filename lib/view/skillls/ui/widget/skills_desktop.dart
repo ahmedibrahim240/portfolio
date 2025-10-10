@@ -19,7 +19,7 @@ class SkillsDesktop extends StatelessWidget {
         return StyledCard(
           borderEffect: false,
           child: Text(
-            item.name,
+            item,
             textAlign: TextAlign.center,
             style: context.textStyle.bodyMdMedium.copyWith(
               color: context.theme.colorScheme.onSurface,

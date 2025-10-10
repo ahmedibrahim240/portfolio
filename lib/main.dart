@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,8 @@ import 'package:my_portfolio/view/home/home_page.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/logic/cubit/drawer_menu_cubit.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'firebase_options.dart';
+
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
@@ -20,6 +23,7 @@ void main() async {
         ? HydratedStorageDirectory.web
         : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   setupGetIt();
   runApp(const MyApp());
 }

@@ -7,8 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
 import 'package:my_portfolio/core/themes/app_colors.dart';
 import 'package:my_portfolio/core/widget/app_text.dart';
-
-import '../../data/projects_models.dart';
+import 'package:my_portfolio/view/about/models/about_me_models.dart';
 
 class ProjectItemCard extends StatelessWidget {
   final ProjectModels project;
