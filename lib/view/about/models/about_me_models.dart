@@ -152,6 +152,8 @@ final List<ProjectModels> allProjects = [
   ProjectModels(
     name: 'Try GC',
     period: '07/2023 - 07/2024',
+    images: AssetsImagePath.getTrygcImages,
+
     playStoreLink: 'Try GC',
     appStoreLink: 'Try GC',
     description: 'Two apps in one app switching between them by user type after login',
@@ -168,6 +170,8 @@ final List<ProjectModels> allProjects = [
   // Elite App
   ProjectModels(
     name: 'Elite App',
+    images: AssetsImagePath.getEliteImages,
+
     period: '10/2024 - Present',
     playStoreLink: 'ELITE',
     appStoreLink: 'ELITE',
