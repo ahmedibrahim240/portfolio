@@ -7,6 +7,7 @@ import 'package:gap/gap.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
 import 'package:my_portfolio/core/themes/app_colors.dart';
 import 'package:my_portfolio/core/widget/app_text.dart';
+import 'package:my_portfolio/core/widget/styled_card.dart';
 import 'package:my_portfolio/view/about/models/about_me_models.dart';
 
 class ProjectItemCard extends StatelessWidget {
@@ -17,36 +18,41 @@ class ProjectItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     ScrollController scrollController = ScrollController();
 
-    return Card(
+    return StyledCard(
+      height: context.height,
+      width: context.width,
+      borderEffect: false,
+      margin: const EdgeInsets.symmetric(horizontal: 5),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AspectRatio(
-            aspectRatio: 1.6,
-            child: Visibility(
-              visible: project.images.isNotEmpty,
-              replacement: Container(color: Colors.amber),
+          Visibility(
+            visible: project.images.isNotEmpty,
+            child: AspectRatio(
+              aspectRatio: 1.6,
               child: CarouselSlider(
                 options: CarouselOptions(
                   viewportFraction: .3,
-
                   enlargeCenterPage: true,
-                  autoPlay: false,
-                  autoPlayAnimationDuration: const Duration(milliseconds: 500),
+                  autoPlay: true,
+                  autoPlayAnimationDuration: const Duration(milliseconds: 400),
                   enableInfiniteScroll: true,
                   disableCenter: true,
                 ),
                 items: project.images.map((image) {
                   return ClipRRect(
                     borderRadius: BorderRadiusGeometry.circular(5),
-                    child: SvgPicture.asset(image, fit: BoxFit.cover),
-                    // child: Image(
-                    //   image: AssetImage(image),
-                    //   filterQuality: FilterQuality.high,
-                    //   isAntiAlias: true,
-                    //   fit: BoxFit.fill,
-                    // ),
+                    child: Visibility(
+                      visible: !image.isPng,
+                      replacement: Image(
+                        image: AssetImage(image),
+                        filterQuality: FilterQuality.high,
+                        isAntiAlias: true,
+                        fit: BoxFit.fill,
+                      ),
+                      child: SvgPicture.asset(image, fit: BoxFit.cover),
+                    ),
                   );
                 }).toList(),
               ),
@@ -173,9 +179,12 @@ class ProjectItemCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         IconButton(onPressed: () {}, icon: const Icon(Icons.android)),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.apple_outlined),
+                        Visibility(
+                          visible: project.appStoreLink != null,
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.apple_outlined),
+                          ),
                         ),
                       ],
                     ),

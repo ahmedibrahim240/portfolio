@@ -15,12 +15,13 @@ class ProiectsDesktop extends StatelessWidget {
           options: CarouselOptions(
             height: boxCont.maxHeight,
             viewportFraction: context.isMobile ? .85 : .33,
-
-            enlargeCenterPage: true,
-            autoPlay: false,
-            autoPlayAnimationDuration: const Duration(milliseconds: 500),
-            enableInfiniteScroll: true,
-            disableCenter: true,
+            animateToClosest: false,
+            enlargeCenterPage: false,
+            autoPlay: true,
+            autoPlayCurve: Curves.easeInOut,
+            autoPlayAnimationDuration: const Duration(milliseconds: 2000),
+            enableInfiniteScroll: false,
+            disableCenter: false,
           ),
           items: kAboutMe.projects.map((project) {
             return Visibility(

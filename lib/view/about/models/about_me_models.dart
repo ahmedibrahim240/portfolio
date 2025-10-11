@@ -191,6 +191,7 @@ final List<ProjectModels> allProjects = [
   ProjectModels(
     name: 'iKhair for Donation',
     period: '03/2022 - 05/2023',
+    images: AssetsImagePath.getIkharImages,
     playStoreLink:
         'https://play.google.com/store/apps/details?id=com.quantatil.ikhar&pli=1',
     appStoreLink: 'https://apps.apple.com/us/app/ikhair-for-donation/id542915812',

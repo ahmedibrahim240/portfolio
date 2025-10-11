@@ -65,3 +65,7 @@ extension CustomColorsExtension on ThemeData {
     return CustomColors._light();
   }
 }
+
+extension CustomStringExtension on String {
+  bool get isPng => toLowerCase().endsWith(".png");
+}

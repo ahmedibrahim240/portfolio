@@ -7,6 +7,7 @@ class StyledCard extends StatefulWidget {
     this.width,
     this.height,
     this.padding,
+    this.margin,
     this.borderRadius,
     this.borderEffect = true,
     required this.child,
@@ -15,6 +16,7 @@ class StyledCard extends StatefulWidget {
   final double? width;
   final double? height;
   final EdgeInsets? padding;
+  final EdgeInsets? margin;
   final BorderRadius? borderRadius;
   final Widget child;
   final bool borderEffect;
@@ -35,6 +37,7 @@ class _StyledCardState extends State<StyledCard> {
         Container(
           width: widget.width,
           height: widget.height,
+          margin: widget.margin,
           padding: widget.padding ?? EdgeInsets.all(context.insets.cardPadding),
           alignment: Alignment.topCenter,
           decoration: BoxDecoration(

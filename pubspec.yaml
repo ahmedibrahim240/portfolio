@@ -68,6 +68,7 @@ flutter:
     - assets/trygc/
     - assets/elite/
     - assets/lite/
+    - assets/ikhar/
     - assets/tyasart_clinet/
     - assets/tyasart_com/
 flutter_native_splash:
