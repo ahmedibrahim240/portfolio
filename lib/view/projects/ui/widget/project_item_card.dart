@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
+import 'package:my_portfolio/core/helper/helper_functions.dart';
 import 'package:my_portfolio/core/themes/app_colors.dart';
 import 'package:my_portfolio/core/widget/app_text.dart';
 import 'package:my_portfolio/core/widget/styled_card.dart';
@@ -178,11 +179,25 @@ class ProjectItemCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        IconButton(onPressed: () {}, icon: const Icon(Icons.android)),
+                        Visibility(
+                          visible: project.playStoreLink != null,
+                          child: IconButton(
+                            onPressed: () async {
+                              await HelperFunctions.launchToUrl(
+                                Uri.parse(project.playStoreLink!),
+                              );
+                            },
+                            icon: const Icon(Icons.android),
+                          ),
+                        ),
                         Visibility(
                           visible: project.appStoreLink != null,
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              await HelperFunctions.launchToUrl(
+                                Uri.parse(project.appStoreLink!),
+                              );
+                            },
                             icon: const Icon(Icons.apple_outlined),
                           ),
                         ),

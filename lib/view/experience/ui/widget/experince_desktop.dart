@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
+import 'package:my_portfolio/core/helper/helper_functions.dart';
 import 'package:my_portfolio/core/themes/app_colors.dart';
 import 'package:my_portfolio/core/widget/styled_card.dart';
 import 'package:my_portfolio/view/about/models/about_me_models.dart';
@@ -131,42 +132,49 @@ class ExperineceItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StyledCard(
-      height: context.isDesktop ? expHeight : expMobileHeight,
-      width: expWidth,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            item.company,
-            style: context.textStyle.titleSmBold.copyWith(
-              color: context.theme.colorScheme.onBackground,
+    return GestureDetector(
+      onTap: () async {
+        await HelperFunctions.launchToUrl(Uri.parse(item.website!));
+      },
+      child: StyledCard(
+        height: context.isDesktop ? expHeight : expMobileHeight,
+        width: expWidth,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              item.company,
+              style: context.textStyle.titleSmBold.copyWith(
+                color: context.theme.colorScheme.onBackground,
+              ),
             ),
-          ),
-          Gap(context.insets.verticalPadding),
+            Gap(context.insets.verticalPadding),
 
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                BuildExpItemContent(data: item.title),
-                Gap(context.insets.verticalPadding),
-                BuildExpItemContent(data: item.period),
-                Gap(context.insets.verticalPadding),
-                BuildExpItemContent(data: item.location),
-              ],
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  BuildExpItemContent(data: item.title),
+                  Gap(context.insets.verticalPadding),
+                  BuildExpItemContent(data: item.period),
+                  Gap(context.insets.verticalPadding),
+                  BuildExpItemContent(data: item.location),
+                ],
+              ),
             ),
-          ),
-          Align(
-            alignment: AlignmentDirectional.bottomEnd,
-            child: IconButton(
-              onPressed: () {},
-              icon: const Icon(FontAwesomeIcons.globe, color: AppColors.primary200),
+            Align(
+              alignment: AlignmentDirectional.bottomEnd,
+              child: IconButton(
+                onPressed: () async {
+                  await HelperFunctions.launchToUrl(Uri.parse(item.website!));
+                },
+                icon: const Icon(FontAwesomeIcons.globe, color: AppColors.primary200),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

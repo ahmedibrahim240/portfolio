@@ -134,8 +134,9 @@ final List<ProjectModels> allProjects = [
     name: 'Tayaar',
     period: '04/2025 - Present',
     images: AssetsImagePath.getTayaarImages,
-    playStoreLink: 'TAYAAR',
-    appStoreLink: 'TAYAAR',
+    playStoreLink: 'https://play.google.com/store/apps/details?id=com.betalab.tayaar',
+    appStoreLink:
+        'https://apps.apple.com/eg/app/tayaar-%D8%B7%D9%8A%D8%A7%D8%B1/id6747727724',
     description:
         'An intelligent Delivery management system designed specifically for Salla platform merchants',
     technologies: [
@@ -154,13 +155,16 @@ final List<ProjectModels> allProjects = [
     period: '07/2023 - 07/2024',
     images: AssetsImagePath.getTrygcImages,
 
-    playStoreLink: 'Try GC',
-    appStoreLink: 'Try GC',
+    playStoreLink:
+        'https://play.google.com/store/apps/details?id=com.grandcommunity.influencer',
+    appStoreLink: 'https://apps.apple.com/kw/app/elite-app/id6740461733',
     description: 'Two apps in one app switching between them by user type after login',
     technologies: [
       'REST API',
       "flavors",
+      "Pusher",
       'Firebase CLI',
+      "Internal chat",
       'Location services',
       'State Management: GetX',
       'Google Maps integration',
@@ -173,14 +177,18 @@ final List<ProjectModels> allProjects = [
     images: AssetsImagePath.getEliteImages,
 
     period: '10/2024 - Present',
-    playStoreLink: 'ELITE',
-    appStoreLink: 'ELITE',
-    description: 'Two apps in one app switching between them by user type after login',
+    playStoreLink:
+        'https://play.google.com/store/apps/details?id=com.grandcommunity.elite',
+    appStoreLink: 'https://apps.apple.com/kw/app/elite-app/id6740461733',
+    description:
+        'android app in test mode \n Two apps in one app switching between them by user type after login',
 
     technologies: [
       'REST API',
       "flavors",
+      "Pusher",
       'Firebase CLI',
+      "Internal chat",
       'Location services',
       'State Management: GetX',
       'Google Maps integration',
@@ -297,7 +305,7 @@ AboutMe kAboutMe = AboutMe(
       company: 'Beta Lab IT (LLC)',
       location: 'Saudi Arabia',
       period: '04/2025 - Present',
-      website: 'https://dev.trytayaar.com/',
+      website: 'https://trytayaar.com/',
     ),
     ExperienceModels(
       title: 'Flutter Developer',
