@@ -34,11 +34,11 @@ class MenuItem extends StatelessWidget {
         child: Text(
           title,
 
-          style: SmallTextStyles().bodyLgMedium.copyWith(
+          style: SmallTextStyles().titleSmBold.copyWith(
             color: isSelected
                 ? context.theme.colorScheme.onBackground
                 : context.theme.colorScheme.onSurface,
-            fontWeight: isSelected ? FontWeight.w500 : FontWeight.w200,
+            fontWeight: isSelected ? FontWeight.w700 : FontWeight.w200,
           ),
         ),
       ),

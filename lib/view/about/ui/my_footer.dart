@@ -21,9 +21,12 @@ class MyFooter extends StatelessWidget {
       padding: EdgeInsets.all(context.insets.cardPadding),
       child: Column(
         children: [
+          Gap(context.insets.appBarHeight),
+
           context.isDesktop ? const _DeskTopFooter() : const _MobileFooter(),
           const Divider(height: 24),
           const PoweredByFlutter(),
+          Gap(context.insets.appBarHeight),
         ],
       ),
     );

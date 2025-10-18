@@ -6,6 +6,7 @@ import 'package:my_portfolio/view/home/widget/app_bar/data/models/app_menu_model
 import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_cubit.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_state.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/ui/app_menu.dart';
+import 'package:my_portfolio/view/home/widget/app_bar/ui/theme_toggle.dart';
 
 import 'app_bar_drawer_icon.dart';
 
@@ -35,9 +36,9 @@ class HomeAppBar extends StatelessWidget {
                 const Spacer(),
                 if (context.isDesktop) const DiskTopMenu(),
                 const Spacer(),
-                // const ThemeToggle(),
+                const ThemeToggle(),
                 if (!context.isDesktop) const AppBarDrawerIcon(),
-                const Spacer(),
+                // const Spacer(),
               ],
             ),
           ),
