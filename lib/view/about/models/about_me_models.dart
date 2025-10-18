@@ -69,6 +69,7 @@ class AboutMe {
   final String country;
   final String city;
   final String email;
+  final String cvLink;
   final String phone;
   final SocialLinks social;
   final String summary;
@@ -82,6 +83,7 @@ class AboutMe {
     required this.projects,
     required this.fullName,
     required this.image,
+    required this.cvLink,
     required this.title,
     required this.country,
     required this.city,
@@ -261,6 +263,8 @@ AboutMe kAboutMe = AboutMe(
   fullName: 'Ahmed Ibrahim',
   image: 'assets/me.jpeg',
   title: 'Sr. Flutter Developer',
+  cvLink:
+      "https://drive.google.com/file/d/1gajdKwPdXgdIkeQupTLJM8P6I_sALe0K/view?usp=sharing",
   country: 'Egypt',
   city: 'Al Mansoura',
   email: 'ahmedibrahim150240@gmail.com',

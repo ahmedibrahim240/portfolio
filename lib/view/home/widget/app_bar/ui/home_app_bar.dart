@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/core/helper/app_size.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/data/models/app_menu_models.dart';
+import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_cubit.dart';
+import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_state.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/ui/app_menu.dart';
-import 'package:my_portfolio/view/home/widget/app_bar/ui/theme_toggle.dart';
 
 import 'app_bar_drawer_icon.dart';
 
@@ -33,7 +35,7 @@ class HomeAppBar extends StatelessWidget {
                 const Spacer(),
                 if (context.isDesktop) const DiskTopMenu(),
                 const Spacer(),
-                const ThemeToggle(),
+                // const ThemeToggle(),
                 if (!context.isDesktop) const AppBarDrawerIcon(),
               ],
             ),
@@ -59,10 +61,23 @@ class DiskTopMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: AppMenuModel.menuList
-          .map((e) => MenuItem(onTap: () {}, title: e.title, isSelected: e.index == 0))
-          .toList(),
+    return BlocBuilder<ScrollCubitCubit, ScrollCubitState>(
+      builder: (context, state) {
+        final ScrollCubitCubit scrollCubit = context.read<ScrollCubitCubit>();
+        return Row(
+          children: AppMenuModel.menuList
+              .map(
+                (e) => MenuItem(
+                  onTap: () {
+                    scrollCubit.scrollToSection(e.path);
+                  },
+                  isSelected: e.path == scrollCubit.currentsctionPath,
+                  title: e.title,
+                ),
+              )
+              .toList(),
+        );
+      },
     );
   }
 }

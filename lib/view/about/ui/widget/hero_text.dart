@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:my_portfolio/core/helper/app_size.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
+import 'package:my_portfolio/core/helper/helper_functions.dart';
 import 'package:my_portfolio/core/widget/app_text.dart';
 import 'package:my_portfolio/view/about/models/about_me_models.dart';
 import 'package:pretty_animated_text/pretty_animated_text.dart';
@@ -26,20 +27,12 @@ class HeroText extends StatelessWidget {
             crossAxisAlignment: context.isDesktop
                 ? CrossAxisAlignment.start
                 : CrossAxisAlignment.center,
-            children: [
-              const BuildNameAndJob(),
-              Gap(AppSize.xl),
-              OutlinedButton(onPressed: () {}, child: const Text('Download CV')),
-            ],
+            children: [const BuildNameAndJob(), Gap(AppSize.xl), const _DownLoadCVBtn()],
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const BuildNameAndJob(),
-              Gap(AppSize.xxl),
-              OutlinedButton(onPressed: () {}, child: const Text('Download CV')),
-            ],
+            children: [const BuildNameAndJob(), Gap(AppSize.xxl), const _DownLoadCVBtn()],
           ),
         ),
         Gap(AppSize.smallSized),
@@ -67,6 +60,23 @@ class HeroText extends StatelessWidget {
         //   ),
         // ),
       ],
+    );
+  }
+}
+
+class _DownLoadCVBtn extends StatelessWidget {
+  const _DownLoadCVBtn();
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      onPressed: () async {
+        await HelperFunctions.launchToUrl(Uri.parse(kAboutMe.cvLink));
+      },
+      child: const Padding(
+        padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
+        child: Text('Resume'),
+      ),
     );
   }
 }

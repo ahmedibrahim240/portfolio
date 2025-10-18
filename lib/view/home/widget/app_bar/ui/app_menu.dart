@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/core/helper/app_size.dart';
@@ -6,6 +8,8 @@ import 'package:my_portfolio/core/themes/app_text_style.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/data/models/app_menu_models.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/logic/cubit/drawer_menu_cubit.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/logic/cubit/drawer_menu_state.dart';
+import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_cubit.dart';
+import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_state.dart';
 
 class MenuItem extends StatelessWidget {
   final String title;
@@ -27,7 +31,16 @@ class MenuItem extends StatelessWidget {
           horizontal: AppSize.medSized,
           vertical: AppSize.xsSized,
         ),
-        child: Text(title, style: SmallTextStyles().bodyLgMedium),
+        child: Text(
+          title,
+
+          style: SmallTextStyles().bodyLgMedium.copyWith(
+            color: isSelected
+                ? context.theme.colorScheme.onBackground
+                : context.theme.colorScheme.onSurface,
+            fontWeight: isSelected ? FontWeight.w500 : FontWeight.w200,
+          ),
+        ),
       ),
     );
   }
@@ -101,16 +114,34 @@ class _DrawerMenuState extends State<DrawerMenu> with SingleTickerProviderStateM
 }
 
 class MobileMenu extends StatelessWidget {
-  const MobileMenu({super.key});
+  final bool isFromFooter;
+  const MobileMenu({super.key, this.isFromFooter = false});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: AppMenuModel.menuList
-          .map((e) => MenuItem(onTap: () {}, title: e.title, isSelected: e.index == 0))
-          .toList(),
+    return BlocBuilder<ScrollCubitCubit, ScrollCubitState>(
+      builder: (context, state) {
+        final ScrollCubitCubit scrollCubit = context.read<ScrollCubitCubit>();
+        final drawerCubit = context.read<DrawerMenuCubit>();
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: AppMenuModel.menuList
+              .map(
+                (e) => MenuItem(
+                  onTap: () {
+                    scrollCubit.scrollToSection(e.path);
+                    if (!isFromFooter) {
+                      drawerCubit.changeDrawerState(false); // Close drawer
+                    }
+                  },
+                  isSelected: e.path == scrollCubit.currentsctionPath,
+                  title: e.title,
+                ),
+              )
+              .toList(),
+        );
+      },
     );
   }
 }
