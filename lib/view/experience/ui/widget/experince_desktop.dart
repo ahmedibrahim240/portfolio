@@ -107,7 +107,7 @@ class ExperineceCardItem extends StatelessWidget {
         Visibility(
           visible: isEven,
           child: SizedBox(
-            width: MediaQuery.of(context).size.width * .08,
+            width: MediaQuery.of(context).size.width * .07,
             child: DottedLine(dashColor: context.theme.colorScheme.onBackground),
           ),
         ),
@@ -116,7 +116,8 @@ class ExperineceCardItem extends StatelessWidget {
         Visibility(
           visible: !isEven,
           child: SizedBox(
-            width: 100,
+            width: MediaQuery.of(context).size.width * .07,
+
             child: DottedLine(dashColor: context.theme.colorScheme.onBackground),
           ),
         ),

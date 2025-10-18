@@ -19,7 +19,7 @@ class ProiectsDesktop extends StatelessWidget {
             enlargeCenterPage: false,
             autoPlay: true,
             autoPlayCurve: Curves.easeInOut,
-            autoPlayAnimationDuration: const Duration(seconds: 3),
+            autoPlayAnimationDuration: const Duration(seconds: 1),
             enableInfiniteScroll: false,
             disableCenter: false,
           ),

@@ -27,14 +27,14 @@ class _HeroImageAnmatiedState extends State<HeroImageAnmatied>
   }
 
   void _preloadImage() async {
-    try {
-      await precacheImage(AssetImage(kAboutMe.image), context);
-      debugPrint("_preloadImage 👌");
-    } catch (e) {
-      debugPrint("_preloadImage error :$e");
-    }
+    // try {
+    //   await precacheImage(AssetImage(kAboutMe.image), context);
+    //   debugPrint("_preloadImage 👌");
+    // } catch (e) {
+    //   debugPrint("_preloadImage error :$e");
+    // }
 
-    Future.delayed(const Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 50), () {
       if (mounted) {
         _controller.forward();
       }

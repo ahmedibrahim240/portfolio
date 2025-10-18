@@ -46,6 +46,22 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     FlutterNativeSplash.remove();
+    _preloadImage();
+  }
+
+  void _preloadImage() async {
+    try {
+      await precacheImage(AssetImage(kAboutMe.image), context);
+      debugPrint("_preloadImage 👌");
+    } catch (e) {
+      debugPrint("_preloadImage error :$e");
+    }
+
+    // Future.delayed(const Duration(milliseconds: 50), () {
+    //   if (mounted) {
+    //     _controller.forward();
+    //   }
+    // });
   }
 
   @override
