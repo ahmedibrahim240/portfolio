@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // In home_page.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:my_portfolio/core/helper/app_size.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
 import 'package:my_portfolio/core/routing/routes.dart';
@@ -55,8 +56,7 @@ class HomeContent extends StatelessWidget {
                 shrinkWrap: true,
                 slivers: [
                   _buildAboutSection(context, scrollCubit),
-                  _buildSkillsSection(scrollCubit),
-                  const SkillsScreen(),
+                  _buildSkillsSection(context, scrollCubit),
 
                   _buildProjectsSection(scrollCubit),
                   _buildExperienceSection(scrollCubit),
@@ -87,7 +87,10 @@ class HomeContent extends StatelessWidget {
     );
   }
 
-  SliverToBoxAdapter _buildSkillsSection(ScrollCubitCubit scrollCubit) {
+  SliverToBoxAdapter _buildSkillsSection(
+    BuildContext context,
+    ScrollCubitCubit scrollCubit,
+  ) {
     final skillsKey = GlobalKey();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       scrollCubit.registerSection(AppRoutes.skills, skillsKey);
@@ -96,7 +99,15 @@ class HomeContent extends StatelessWidget {
     return SliverToBoxAdapter(
       child: KeyedSubtree(
         key: skillsKey,
-        child: const HomeSctionTitle(title: 'Skills'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const HomeSctionTitle(title: 'Skills'),
+            const SkillsScreen(),
+            Gap(context.insets.appBarHeight),
+          ],
+        ),
       ),
     );
   }

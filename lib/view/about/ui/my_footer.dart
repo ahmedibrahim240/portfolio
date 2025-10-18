@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
-import 'package:my_portfolio/core/helper/app_size.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
 import 'package:my_portfolio/core/helper/helper_functions.dart';
 import 'package:my_portfolio/core/widget/powered_by_flutter.dart';
@@ -17,23 +16,15 @@ class MyFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      color: context.theme.appBarTheme.backgroundColor?.withValues(alpha: 0.1),
-      alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(
-        horizontal: context.insets.horizontalPadding,
-        vertical: context.insets.verticalPadding,
-      ),
-      child: Container(
-        constraints: BoxConstraints(maxWidth: AppSize.maxWidth),
-        child: Column(
-          children: [
-            context.isDesktop ? const _DeskTopFooter() : const _MobileFooter(),
-            const Divider(height: 24),
-            const PoweredByFlutter(),
-          ],
-        ),
+    return Container(
+      // color: context.theme.appBarTheme.backgroundColor?.withValues(alpha: 0.1),
+      padding: EdgeInsets.all(context.insets.cardPadding),
+      child: Column(
+        children: [
+          context.isDesktop ? const _DeskTopFooter() : const _MobileFooter(),
+          const Divider(height: 24),
+          const PoweredByFlutter(),
+        ],
       ),
     );
   }
@@ -55,7 +46,7 @@ class _MobileFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(children: [AppLogo(), MobileMenu(), Gap(10), _ContactMe()]);
+    return const Column(children: [AppLogo(), MobileMenu(), _ContactMe()]);
   }
 }
 

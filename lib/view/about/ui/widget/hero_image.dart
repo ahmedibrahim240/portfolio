@@ -59,7 +59,7 @@ class _HeroImageAnmatiedState extends State<HeroImageAnmatied>
       duration: const Duration(seconds: 1),
       curve: Curves.easeInOut,
       child: AspectRatio(
-        aspectRatio: aspectRatio,
+        aspectRatio: .6,
         child: Container(
           decoration: BoxDecoration(
             // color: Colors.red,

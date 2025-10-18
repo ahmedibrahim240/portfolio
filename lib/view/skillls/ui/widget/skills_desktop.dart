@@ -1,5 +1,4 @@
-// ignore_for_file: deprecated_member_use
-
+// skills_desktop.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
@@ -11,10 +10,16 @@ class SkillsDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverMasonryGrid(
+    return MasonryGridView.builder(
       crossAxisSpacing: 16,
       mainAxisSpacing: 16,
-      delegate: SliverChildBuilderDelegate((context, index) {
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: kAboutMe.skills.length,
+      gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: context.isDesktop ? 6 : 3,
+      ),
+      itemBuilder: (context, index) {
         var item = kAboutMe.skills[index];
         return StyledCard(
           borderEffect: false,
@@ -27,11 +32,7 @@ class SkillsDesktop extends StatelessWidget {
             ),
           ),
         );
-      }, childCount: kAboutMe.skills.length),
-
-      gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: context.isDesktop ? 6 : 3,
-      ),
+      },
     );
   }
 }

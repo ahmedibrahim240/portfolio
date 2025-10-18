@@ -15,12 +15,12 @@ class ProjectsScreen extends StatelessWidget {
         maxHeight: context.isTablet ? 500 : 610,
         minHeight: context.isTablet ? 200 : 400,
       ),
-      child: const Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          HomeSctionTitle(title: 'Projects'),
-          Expanded(
+          const HomeSctionTitle(title: 'Projects'),
+          const Expanded(
             child: Padding(
               padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 10),
               child: Visibility(
@@ -30,7 +30,7 @@ class ProjectsScreen extends StatelessWidget {
               ),
             ),
           ),
-          Gap(20),
+          Gap(context.insets.appBarHeight),
         ],
       ),
     );

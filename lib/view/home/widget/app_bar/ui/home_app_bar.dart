@@ -37,6 +37,7 @@ class HomeAppBar extends StatelessWidget {
                 const Spacer(),
                 // const ThemeToggle(),
                 if (!context.isDesktop) const AppBarDrawerIcon(),
+                const Spacer(),
               ],
             ),
           ),

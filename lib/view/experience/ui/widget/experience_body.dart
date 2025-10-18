@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
 import 'package:my_portfolio/core/widget/home_sction_title.dart';
 import 'package:my_portfolio/view/experience/ui/widget/experince_desktop.dart';
@@ -22,6 +23,7 @@ class ExperienceBody extends StatelessWidget {
             child: const ExperinceDesktop(),
           ),
         ),
+        Gap(context.insets.appBarHeight),
       ],
     );
   }

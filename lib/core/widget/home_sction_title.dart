@@ -16,7 +16,7 @@ class HomeSctionTitle extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Gap(10),
+        Gap(context.insets.verticalPadding + 5),
         AppText(
           title,
           style: context.textStyle.titleSmBold.copyWith(
@@ -24,7 +24,7 @@ class HomeSctionTitle extends StatelessWidget {
           ),
         ),
 
-        const Gap(10),
+        Gap(context.insets.verticalPadding + 5),
       ],
     );
   }

@@ -45,7 +45,7 @@ class _SmallHero extends StatelessWidget {
     return Column(
       children: [
         ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 140),
+          constraints: const BoxConstraints(maxWidth: 300),
           child: const HeroImageAnmatied(),
         ),
         Gap(AppSize.xl),
