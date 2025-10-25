@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/core/helper/app_size.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
+import 'package:my_portfolio/view/about/models/about_me_models.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/data/models/app_menu_models.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_cubit.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_state.dart';
@@ -35,9 +36,9 @@ class HomeAppBar extends StatelessWidget {
                 const Spacer(),
                 if (context.isDesktop) const DiskTopMenu(),
                 const Spacer(),
-                // const ThemeToggle(),
+                // ThemeToggle(),
                 if (!context.isDesktop) const AppBarDrawerIcon(),
-                // const Spacer(),
+                const Spacer(),
               ],
             ),
           ),
@@ -53,7 +54,7 @@ class AppLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('Ahmed Ibranim', style: context.textStyle.heading2);
+    return Text(kAboutMe.fullName, style: context.textStyle.heading2);
   }
 }
 

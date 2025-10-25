@@ -14,20 +14,21 @@ class ProiectsDesktop extends StatelessWidget {
         return CarouselSlider(
           options: CarouselOptions(
             height: boxCont.maxHeight,
-            viewportFraction: context.isMobile ? .85 : .33,
+            viewportFraction: context.isDesktop ? .87 : .85,
             animateToClosest: false,
             enlargeCenterPage: false,
+
             autoPlay: true,
             autoPlayCurve: Curves.easeInOut,
             autoPlayAnimationDuration: const Duration(seconds: 1),
-            enableInfiniteScroll: false,
+            enableInfiniteScroll: true,
             disableCenter: false,
           ),
           items: kAboutMe.projects.map((project) {
             return Visibility(
-              // visible: context.isDesktop,
-              // replacement: ProjectItemCardMoble(project: project),
-              child: ProjectItemCard(project: project),
+              visible: context.isDesktop,
+              replacement: ProjectItemCard(project: project),
+              child: ProjectItemCard2(project: project),
             );
           }).toList(),
         );

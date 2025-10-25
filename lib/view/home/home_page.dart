@@ -41,15 +41,15 @@ class HomeContent extends StatelessWidget {
 
         return Align(
           alignment: AlignmentDirectional.center,
-          child: Container(
-            constraints: BoxConstraints(maxWidth: AppSize.maxWidth),
-            padding: EdgeInsetsDirectional.only(
-              top: context.insets.appBarHeight,
-              start: context.insets.horizontalPadding,
-              end: context.insets.horizontalPadding,
-            ),
-            child: SingleChildScrollView(
-              controller: scrollCubit.scrollController,
+          child: SingleChildScrollView(
+            controller: scrollCubit.scrollController,
+            child: Container(
+              constraints: BoxConstraints(maxWidth: AppSize.maxWidth),
+              padding: EdgeInsetsDirectional.only(
+                top: context.insets.appBarHeight,
+                start: context.insets.horizontalPadding,
+                end: context.insets.horizontalPadding,
+              ),
               child: CustomScrollView(
                 physics: const NeverScrollableScrollPhysics(),
                 primary: true,

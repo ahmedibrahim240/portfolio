@@ -13,12 +13,11 @@ class AppColors {
     600: Color(0xFF7E7E7E),
     700: Color(0xFF646464),
     800: Color(0xFF333333),
-    850: Color(0xFF131313),
+    850: Color(0xFF0E0E1E),
     900: Color(0xFF110D12),
   });
 
   /*
-#121228
 12:05
 #1BD6D8
 12:06
@@ -27,18 +26,20 @@ class AppColors {
 #98ECEC
 12:07
 #27EEE2
+
+#121228
 111127
 */
   // Primary Colors
-  static const Color primary = Color(0xFF561895);
-  static const Color primary200 = Color(0xFF974BD4);
+  static const Color primary = Color(0xFF1BD6D8);
+  static const Color primary200 = Color(0xFF27EEE2);
 
   // Secondary Colors
   static const Color secondary1 = Color(0xFF27AE60);
   static const Color secondary2 = Color(0xFF21E786);
 
   // Scaffold Colors
-  static const Color scaffoldDarkBg = Color(0xFF110D12);
+  static const Color scaffoldDarkBg = Color(0xFF111127);
   static const Color scaffoldLightBg = Color(0xFFFBFBFB);
 }
 // Based on the logo, here are the primary colors and their hex codes:
