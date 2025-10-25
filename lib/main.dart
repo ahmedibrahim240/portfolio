@@ -1,18 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
+// import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:my_portfolio/core/di/dependency_injection.dart';
 import 'package:my_portfolio/core/service/firebase.dart';
 import 'package:my_portfolio/core/themes/app_theme.dart';
-import 'package:my_portfolio/core/themes/cubit/theme_cubit.dart';
 import 'package:my_portfolio/view/about/models/about_me_models.dart';
 import 'package:my_portfolio/view/home/home_page.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/logic/cubit/drawer_menu_cubit.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_cubit.dart';
-import 'package:path_provider/path_provider.dart';
 
 import 'firebase_options.dart';
 
@@ -21,11 +18,11 @@ void main() async {
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   // Initialize HydratedBloc storage
-  HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory: kIsWeb
-        ? HydratedStorageDirectory.web
-        : HydratedStorageDirectory((await getTemporaryDirectory()).path),
-  );
+  // HydratedBloc.storage = await HydratedStorage.build(
+  //   storageDirectory: kIsWeb
+  //       ? HydratedStorageDirectory.web
+  //       : HydratedStorageDirectory((await getTemporaryDirectory()).path),
+  // );
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   setupGetIt();
   final firestoreService = FirebaseAboutMeService();
@@ -68,22 +65,25 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => getIt<ThemeCubit>()),
+        // BlocProvider(create: (context) => getIt<ThemeCubit>()),
         BlocProvider(create: (context) => getIt<DrawerMenuCubit>()),
         BlocProvider(create: (context) => getIt<ScrollCubitCubit>()),
       ],
-      child: BlocBuilder<ThemeCubit, bool>(
-        builder: (context, state) {
-          return MaterialApp(
-            title: 'Ahmed Ibranim',
-            debugShowCheckedModeBanner: false,
-            theme: state ? AppTheme.darkTheme : AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: state ? ThemeMode.dark : ThemeMode.light,
-            home: const HomePage(),
-          );
-        },
+      child: MaterialApp(
+        title: 'Ahmed Ibranim',
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.darkTheme,
+        // theme: state ? AppTheme.darkTheme : AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.dark,
+        // themeMode: state ? ThemeMode.dark : ThemeMode.light,
+        home: const HomePage(),
       ),
+      // child: BlocBuilder<ThemeCubit, bool>(
+      //   builder: (context, state) {
+      //     return ;
+      //   },
+      // ),
     );
   }
 }
