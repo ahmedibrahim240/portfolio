@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
+<!DOCTYPE html><html><head>
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -35,6 +32,10 @@
 
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 
+
+
+  
+  
   <style id="splash-screen-style">
     html {
       height: 100%
@@ -42,12 +43,9 @@
 
     body {
       margin: 0;
-      height: 100%;
-      background: #000000;
-      background-image: url("splash/img/light-4x.png");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      min-height: 100%;
+      background-color: #121228;
+          background-size: 100% 100%;
     }
 
     .center {
@@ -55,24 +53,24 @@
       position: absolute;
       top: 50%;
       left: 50%;
+      -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
     }
 
     .contain {
-      display: block;
-      width: 100vw;
-      height: 100vh;
+      display:block;
+      width:100%; height:100%;
       object-fit: contain;
     }
 
     .stretch {
-      display: block;
-      width: 100vw;
+      display:block;
+      width:100%; height:100%;
     }
 
     .cover {
-      display: block;
-      height: 100vh;
+      display:block;
+      width:100%; height:100%;
       object-fit: cover;
     }
 
@@ -96,52 +94,10 @@
       right: 0;
     }
 
-    /* Responsive image sizing */
-    #splash img {
-      max-width: 90vw;
-      max-height: 90vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-    }
-
-    /* Mobile phones */
-    @media (max-width: 600px) {
-      #splash img {
-        max-width: 95vw;
-        max-height: 95vh;
-      }
-    }
-
-    /* Tablets */
-    @media (min-width: 601px) and (max-width: 1024px) {
-      #splash img {
-        max-width: 80vw;
-        max-height: 80vh;
-      }
-    }
-
-    /* Desktop */
-    @media (min-width: 1025px) {
-      #splash img {
-        max-width: 70vw;
-        max-height: 70vh;
-      }
-    }
-
-    /* Very large screens */
-    @media (min-width: 1920px) {
-      #splash img {
-        max-width: 60vw;
-        max-height: 60vh;
-      }
-    }
-
     @media (prefers-color-scheme: dark) {
       body {
-        background-color: #000000;
-        background-image: url("splash/img/dark-4x.png");
-      }
+        background-color: #121228;
+          }
     }
   </style>
   <script id="splash-screen-script">
@@ -154,6 +110,12 @@
 </head>
 
 <body>
+  <picture id="splash">
+      <source srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x" media="(prefers-color-scheme: light)">
+      <source srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x" media="(prefers-color-scheme: dark)">
+      <img class="center" aria-hidden="true" src="splash/img/light-1x.png" alt="">
+  </picture>
+  
   <!-- <picture id="splash">
     <source
       srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x"
@@ -198,6 +160,8 @@
     }
   </style>
 
-</body>
 
-</html>
+
+
+
+</body></html>
