@@ -22,51 +22,58 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
-        child: Stack(children: [BackgraundBlur(), HomeContent(), HomeAppBar()]),
+        child: BlocBuilder<ScrollCubitCubit, ScrollCubitState>(
+          builder: (context, state) {
+            final ScrollCubitCubit scrollCubit = context.read<ScrollCubitCubit>();
+            return SingleChildScrollView(
+              controller: scrollCubit.scrollController,
+
+              child: Stack(
+                children: [
+                  const BackgraundBlur(),
+                  HomeContent(scrollCubit: scrollCubit),
+                  const HomeAppBar(),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
 }
 
 class HomeContent extends StatelessWidget {
-  const HomeContent({super.key});
+  final ScrollCubitCubit scrollCubit;
+  const HomeContent({super.key, required this.scrollCubit});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ScrollCubitCubit, ScrollCubitState>(
-      builder: (context, state) {
-        final ScrollCubitCubit scrollCubit = context.read<ScrollCubitCubit>();
+    return Align(
+      alignment: AlignmentDirectional.center,
+      child: Container(
+        constraints: BoxConstraints(maxWidth: AppSize.maxWidth),
+        padding: EdgeInsetsDirectional.only(
+          top: context.insets.appBarHeight,
+          start: context.insets.horizontalPadding,
+          end: context.insets.horizontalPadding,
+        ),
+        child: CustomScrollView(
+          physics: const NeverScrollableScrollPhysics(),
+          primary: true,
+          shrinkWrap: true,
+          slivers: [
+            _buildAboutSection(context, scrollCubit),
+            _buildSkillsSection(context, scrollCubit),
 
-        return Align(
-          alignment: AlignmentDirectional.center,
-          child: SingleChildScrollView(
-            controller: scrollCubit.scrollController,
-            child: Container(
-              constraints: BoxConstraints(maxWidth: AppSize.maxWidth),
-              padding: EdgeInsetsDirectional.only(
-                top: context.insets.appBarHeight,
-                start: context.insets.horizontalPadding,
-                end: context.insets.horizontalPadding,
-              ),
-              child: CustomScrollView(
-                physics: const NeverScrollableScrollPhysics(),
-                primary: true,
-                shrinkWrap: true,
-                slivers: [
-                  _buildAboutSection(context, scrollCubit),
-                  _buildSkillsSection(context, scrollCubit),
-
-                  _buildProjectsSection(scrollCubit),
-                  _buildExperienceSection(scrollCubit),
-                  _buildContactSection(scrollCubit),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
+            _buildProjectsSection(scrollCubit),
+            _buildExperienceSection(scrollCubit),
+            _buildContactSection(scrollCubit),
+          ],
+        ),
+      ),
     );
   }
 

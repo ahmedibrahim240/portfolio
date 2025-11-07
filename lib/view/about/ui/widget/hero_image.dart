@@ -50,7 +50,7 @@ class _HeroImageAnmatiedState extends State<HeroImageAnmatied>
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 0.6, // Fixed aspect ratio for stable layout
+      aspectRatio: 0.66, // Fixed aspect ratio for stable layout
       child: ScaleTransition(
         scale: _scaleAnimation,
         child: ClipRRect(
