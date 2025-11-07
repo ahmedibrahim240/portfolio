@@ -34,16 +34,23 @@ class HomeAppBar extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: AppSize.maxWidth),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const AppLogo(),
-                  const Spacer(),
                   if (context.isDesktop) const DiskTopMenu(),
-                  const Spacer(),
-                  if (!context.isDesktop) const AppBarDrawerIcon(),
-                  ContactMeButton(scrollCubit: scrollCubit),
-                  const Spacer(),
+                  if (!context.isDesktop)
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const AppBarDrawerIcon(),
+                        const SizedBox(width: 16),
+                        ContactMeButton(scrollCubit: scrollCubit),
+                      ],
+                    ),
+                  if (context.isDesktop) ContactMeButton(scrollCubit: scrollCubit),
                 ],
               ),
             ),
@@ -66,18 +73,42 @@ class HomeAppBar extends StatelessWidget {
   }
 }
 
-class ContactMeButton extends StatelessWidget {
+class ContactMeButton extends StatefulWidget {
   final ScrollCubitCubit scrollCubit;
   const ContactMeButton({super.key, required this.scrollCubit});
 
   @override
-  Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: () {
-        scrollCubit.scrollToSection(AppRoutes.contact);
-      },
+  State<ContactMeButton> createState() => _ContactMeButtonState();
+}
 
-      child: const Text('Contact Me'),
+class _ContactMeButtonState extends State<ContactMeButton> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        transform: Matrix4.identity()..scale(_isHovered ? 1.05 : 1.0),
+        child: OutlinedButton(
+          onPressed: () {
+            widget.scrollCubit.scrollToSection(AppRoutes.contact);
+          },
+          style: OutlinedButton.styleFrom(
+            side: BorderSide(
+              color: _isHovered ? context.theme.primaryColor : context.theme.dividerColor,
+              width: _isHovered ? 1.5 : 1.0,
+            ),
+            foregroundColor: _isHovered
+                ? context.theme.primaryColor
+                : context.theme.textTheme.bodyLarge?.color,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          ),
+          child: const Text('Contact Me'),
+        ),
+      ),
     );
   }
 }

@@ -64,18 +64,40 @@ class HeroText extends StatelessWidget {
   }
 }
 
-class _DownLoadCVBtn extends StatelessWidget {
+class _DownLoadCVBtn extends StatefulWidget {
   const _DownLoadCVBtn();
 
   @override
+  State<_DownLoadCVBtn> createState() => _DownLoadCVBtnState();
+}
+
+class _DownLoadCVBtnState extends State<_DownLoadCVBtn> {
+  bool _isHovered = false;
+
+  @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: () async {
-        await HelperFunctions.launchToUrl(Uri.parse(kAboutMe.cvLink));
-      },
-      child: const Padding(
-        padding: EdgeInsetsGeometry.symmetric(horizontal: 12),
-        child: Text('Resume'),
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        transform: Matrix4.identity()..scale(_isHovered ? 1.05 : 1.0),
+        child: OutlinedButton(
+          onPressed: () async {
+            await HelperFunctions.launchToUrl(Uri.parse(kAboutMe.cvLink));
+          },
+          style: OutlinedButton.styleFrom(
+            side: BorderSide(
+              color: _isHovered ? context.theme.primaryColor : context.theme.dividerColor,
+              width: _isHovered ? 1.5 : 1.0,
+            ),
+            foregroundColor: _isHovered
+                ? context.theme.primaryColor
+                : context.theme.textTheme.bodyLarge?.color,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          ),
+          child: const Text('Resume'),
+        ),
       ),
     );
   }
@@ -87,6 +109,8 @@ class BuildNameAndJob extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         AppText(
           kAboutMe.fullName,
@@ -97,15 +121,18 @@ class BuildNameAndJob extends StatelessWidget {
           // textRendererStyle: TextRendererStyle.header1,
         ),
         Gap(AppSize.smallSized),
-        DefaultTextStyle(
-          textAlign: context.isDesktop ? TextAlign.left : TextAlign.center,
-          style: context.textStyle.titleMdMedium.copyWith(
-            color: context.theme.colorScheme.onBackground,
-          ),
-          child: AnimatedTextKit(
-            repeatForever: true,
+        SizedBox(
+          width: 150,
+          child: DefaultTextStyle(
+            textAlign: context.isDesktop ? TextAlign.left : TextAlign.center,
+            style: context.textStyle.titleMdMedium.copyWith(
+              color: context.theme.colorScheme.onBackground,
+            ),
+            child: AnimatedTextKit(
+              repeatForever: true,
 
-            animatedTexts: [TyperAnimatedText(kAboutMe.title)],
+              animatedTexts: [TyperAnimatedText(kAboutMe.title)],
+            ),
           ),
         ),
       ],

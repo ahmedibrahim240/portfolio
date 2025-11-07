@@ -46,7 +46,7 @@ class _AppBarDrawerIconState extends State<AppBarDrawerIcon>
           },
         );
       },
-      child: Align(
+      child: Container(
         alignment: AlignmentDirectional.topCenter,
         child: IconButton(
           icon: AnimatedIcon(icon: AnimatedIcons.menu_close, progress: _animation),
