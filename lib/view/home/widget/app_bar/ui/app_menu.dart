@@ -14,12 +14,16 @@ import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_
 class MenuItem extends StatefulWidget {
   final String title;
   final bool isSelected;
+  final bool isScrolling;
   final VoidCallback onTap;
+  final double scrollProgress; // 0.0 to 1.0
   const MenuItem({
     super.key,
     required this.onTap,
     required this.title,
     required this.isSelected,
+    this.isScrolling = false,
+    this.scrollProgress = 0.0,
   });
 
   @override
@@ -67,50 +71,51 @@ class _MenuItemState extends State<MenuItem> with SingleTickerProviderStateMixin
         : context.theme.colorScheme.onSurface;
     final Color hoverColor = context.theme.primaryColor;
 
+    // Calculate scale based on hover state
+    final double scale = _isHovered ? 1.05 : 1.0;
+    
+    // Calculate letter spacing
+    final double letterSpacing = _isHovered ? 0.5 : 0.0;
+
+    // Determine text color
+    final Color itemColor = _isHovered ? hoverColor : defaultColor;
+
+    // Determine border properties - only show border on hover, not on selected
+    final bool showBorder = _isHovered && !widget.isSelected;
+    final double borderWidth = 1.5;
+
     return MouseRegion(
-      onEnter: (_) {
-        setState(() => _isHovered = true);
-        _animationController.forward();
-      },
-      onExit: (_) {
-        setState(() => _isHovered = false);
-        if (!widget.isSelected) {
-          _animationController.reverse();
-        }
-      },
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(
         onTap: widget.onTap,
-        child: AnimatedBuilder(
-          animation: _animationController,
-          builder: (context, child) {
-            return Transform.scale(
-              scale: _scaleAnimation.value,
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppSize.medSized,
-                  vertical: AppSize.xsSized,
-                ),
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: _isHovered || widget.isSelected
-                          ? hoverColor
-                          : Colors.transparent,
-                      width: 2,
-                    ),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeInOut,
+          padding: EdgeInsets.symmetric(
+            horizontal: AppSize.medSized,
+            vertical: AppSize.xsSized,
+          ),
+          transform: Matrix4.identity()..scale(scale, scale),
+          transformAlignment: Alignment.center,
+          decoration: BoxDecoration(
+            border: showBorder 
+              ? Border(
+                  bottom: BorderSide(
+                    color: hoverColor,
+                    width: borderWidth,
                   ),
-                ),
-                child: Text(
-                  widget.title,
-                  style: SmallTextStyles().titleSmBold.copyWith(
-                    color: _isHovered ? hoverColor : defaultColor,
-                    fontWeight: widget.isSelected ? FontWeight.w700 : FontWeight.w400,
-                    letterSpacing: _isHovered ? 0.5 : 0.0,
-                  ),
-                ),
-              ),
-            );
-          },
+                )
+              : null,
+          ),
+          child: Text(
+            widget.title,
+            style: SmallTextStyles().titleSmBold.copyWith(
+              color: itemColor,
+              fontWeight: widget.isSelected ? FontWeight.w700 : FontWeight.w400,
+              letterSpacing: letterSpacing,
+            ),
+          ),
         ),
       ),
     );
@@ -127,6 +132,7 @@ class DrawerMenu extends StatefulWidget {
 class _DrawerMenuState extends State<DrawerMenu> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<Offset> _animation;
+
   @override
   void initState() {
     _controller = AnimationController(
