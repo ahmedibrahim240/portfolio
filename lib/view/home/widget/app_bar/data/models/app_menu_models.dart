@@ -10,6 +10,5 @@ class AppMenuModel {
     AppMenuModel(title: 'Skills', index: 1, path: AppRoutes.skills),
     AppMenuModel(title: 'Projects', index: 2, path: AppRoutes.projects),
     AppMenuModel(title: 'Experiences', index: 0, path: AppRoutes.experiences),
-    AppMenuModel(title: 'Contact Me', index: 4, path: AppRoutes.contact),
   ];
 }

@@ -8,6 +8,7 @@ import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_
 import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_state.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/ui/app_menu.dart';
 
+import '../../../../../core/routing/routes.dart';
 import 'app_bar_drawer_icon.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -40,8 +41,8 @@ class HomeAppBar extends StatelessWidget {
                   const Spacer(),
                   if (context.isDesktop) const DiskTopMenu(),
                   const Spacer(),
-                  // ThemeToggle(),
                   if (!context.isDesktop) const AppBarDrawerIcon(),
+                  ContactMeButton(scrollCubit: scrollCubit),
                   const Spacer(),
                 ],
               ),
@@ -61,6 +62,22 @@ class HomeAppBar extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class ContactMeButton extends StatelessWidget {
+  final ScrollCubitCubit scrollCubit;
+  const ContactMeButton({super.key, required this.scrollCubit});
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      onPressed: () {
+        scrollCubit.scrollToSection(AppRoutes.contact);
+      },
+
+      child: const Text('Contact Me'),
     );
   }
 }
