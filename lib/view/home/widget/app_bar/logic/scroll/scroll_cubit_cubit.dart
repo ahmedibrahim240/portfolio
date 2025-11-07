@@ -7,6 +7,13 @@ import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_
 class ScrollCubitCubit extends Cubit<ScrollCubitState> {
   final ScrollController scrollController = ScrollController();
   final Map<String, GlobalKey> sectionKeys = {};
+  final ValueNotifier<bool> isAppBarVisible = ValueNotifier(true);
+
+  double _lastOffset = 0;
+  bool _isAppBarVisible = true;
+
+  static const double _visibilityThreshold = 40;
+
   String currentsctionPath = AppRoutes.about;
 
   ScrollCubitCubit() : super(const ScrollCubitState.initial()) {
@@ -19,6 +26,8 @@ class ScrollCubitCubit extends Cubit<ScrollCubitState> {
   }
 
   void _handleScroll() {
+    _updateAppBarVisibility(scrollController.offset);
+
     // Find which section is currently in view
     String? closestSection;
     double closestDistance = double.infinity;
@@ -50,10 +59,33 @@ class ScrollCubitCubit extends Cubit<ScrollCubitState> {
     }
   }
 
+  void _updateAppBarVisibility(double currentOffset) {
+    final double delta = currentOffset - _lastOffset;
+
+    if (delta > _visibilityThreshold && _isAppBarVisible) {
+      _setAppBarVisible(false);
+    } else if (delta < -_visibilityThreshold && !_isAppBarVisible) {
+      _setAppBarVisible(true);
+    } else if (currentOffset <= 0 && !_isAppBarVisible) {
+      _setAppBarVisible(true);
+    }
+
+    _lastOffset = currentOffset;
+  }
+
+  void _setAppBarVisible(bool isVisible) {
+    if (_isAppBarVisible == isVisible) return;
+
+    _isAppBarVisible = isVisible;
+    isAppBarVisible.value = isVisible;
+  }
+
   void scrollToSection(String sectionId) {
     final key = sectionKeys[sectionId];
     currentsctionPath = sectionId;
     debugPrint('Scrolling to: $sectionId, Key: $key');
+
+    _setAppBarVisible(true);
 
     if (key != null && key.currentContext != null) {
       // Use a post-frame callback to ensure the context is ready
@@ -116,6 +148,7 @@ class ScrollCubitCubit extends Cubit<ScrollCubitState> {
   Future<void> close() {
     scrollController.removeListener(_handleScroll);
     scrollController.dispose();
+    isAppBarVisible.dispose();
     return super.close();
   }
 }

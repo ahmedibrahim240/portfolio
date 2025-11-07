@@ -15,36 +15,52 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          color: context.theme.appBarTheme.backgroundColor?.withValues(alpha: 0.1),
-          height: context.insets.appBarHeight,
-          alignment: Alignment.center,
-          padding: EdgeInsets.symmetric(
-            horizontal: context.insets.horizontalPadding,
-            vertical: context.insets.verticalPadding,
-          ),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: AppSize.maxWidth),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const AppLogo(),
-                const Spacer(),
-                if (context.isDesktop) const DiskTopMenu(),
-                const Spacer(),
-                // ThemeToggle(),
-                if (!context.isDesktop) const AppBarDrawerIcon(),
-                const Spacer(),
-              ],
+    final scrollCubit = context.read<ScrollCubitCubit>();
+
+    return ValueListenableBuilder<bool>(
+      valueListenable: scrollCubit.isAppBarVisible,
+      child: Column(
+        children: [
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            color: context.theme.appBarTheme.backgroundColor?.withValues(alpha: 0.1),
+            height: context.insets.appBarHeight,
+            alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(
+              horizontal: context.insets.horizontalPadding,
+              vertical: context.insets.verticalPadding,
+            ),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: AppSize.maxWidth),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const AppLogo(),
+                  const Spacer(),
+                  if (context.isDesktop) const DiskTopMenu(),
+                  const Spacer(),
+                  // ThemeToggle(),
+                  if (!context.isDesktop) const AppBarDrawerIcon(),
+                  const Spacer(),
+                ],
+              ),
             ),
           ),
-        ),
-        if (!context.isDesktop) const DrawerMenu(),
-      ],
+          if (!context.isDesktop) const DrawerMenu(),
+        ],
+      ),
+      builder: (context, isVisible, child) {
+        return AnimatedSlide(
+          duration: const Duration(milliseconds: 200),
+          offset: isVisible ? Offset.zero : const Offset(0, -1),
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 200),
+            opacity: isVisible ? 1 : 0,
+            child: IgnorePointer(ignoring: !isVisible, child: child),
+          ),
+        );
+      },
     );
   }
 }
