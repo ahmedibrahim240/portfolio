@@ -73,7 +73,7 @@ class _MenuItemState extends State<MenuItem> with SingleTickerProviderStateMixin
 
     // Calculate scale based on hover state
     final double scale = _isHovered ? 1.05 : 1.0;
-    
+
     // Calculate letter spacing
     final double letterSpacing = _isHovered ? 0.5 : 0.0;
 
@@ -99,14 +99,11 @@ class _MenuItemState extends State<MenuItem> with SingleTickerProviderStateMixin
           transform: Matrix4.identity()..scale(scale, scale),
           transformAlignment: Alignment.center,
           decoration: BoxDecoration(
-            border: showBorder 
-              ? Border(
-                  bottom: BorderSide(
-                    color: hoverColor,
-                    width: borderWidth,
-                  ),
-                )
-              : null,
+            border: showBorder
+                ? Border(
+                    bottom: BorderSide(color: hoverColor, width: borderWidth),
+                  )
+                : null,
           ),
           child: Text(
             widget.title,
