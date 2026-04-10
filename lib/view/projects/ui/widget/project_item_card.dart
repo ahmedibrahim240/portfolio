@@ -69,11 +69,14 @@ class ProjectItemCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Flexible(
-                        child: AppText(
-                          project.name,
-                          overflow: TextOverflow.ellipsis,
-                          style: context.textStyle.bodyLgBold.copyWith(
-                            color: context.theme.colorScheme.onBackground,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: AppText(
+                            project.name,
+                            overflow: TextOverflow.ellipsis,
+                            style: context.textStyle.bodyLgBold.copyWith(
+                              color: context.theme.colorScheme.onBackground,
+                            ),
                           ),
                         ),
                       ),
@@ -86,7 +89,7 @@ class ProjectItemCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Gap(10),
+                  const Gap(6),
                   Tooltip(
                     message: project.description ?? "No description available",
                     padding: const EdgeInsets.all(16),
@@ -104,7 +107,7 @@ class ProjectItemCard extends StatelessWidget {
                     ),
                     textStyle: context.textStyle.bodyMdMedium.copyWith(
                       color: context.theme.colorScheme.onSurface,
-                      height: 2,
+                      height: 1.4,
                     ),
                     preferBelow: false,
                     verticalOffset: 20,
@@ -114,12 +117,12 @@ class ProjectItemCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: context.textStyle.bodyMdMedium.copyWith(
                         color: context.theme.colorScheme.onSurface,
-                        height: 2,
+                        height: 1.4,
                       ),
                     ),
                   ),
 
-                  const Gap(16),
+                  const Gap(8),
                   Expanded(
                     child: ScrollbarTheme(
                       data: ScrollbarThemeData(
@@ -172,7 +175,7 @@ class ProjectItemCard extends StatelessWidget {
                     ),
                   ),
 
-                  const Gap(24),
+                  const Gap(6),
                   Align(
                     alignment: AlignmentDirectional.centerEnd,
                     child: Row(
@@ -286,7 +289,7 @@ class ProjectItemCard2 extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Gap(10),
+                  const Gap(6),
                   Tooltip(
                     message: project.description ?? "No description available",
                     padding: const EdgeInsets.all(16),
@@ -304,7 +307,7 @@ class ProjectItemCard2 extends StatelessWidget {
                     ),
                     textStyle: context.textStyle.bodyMdMedium.copyWith(
                       color: context.theme.colorScheme.onSurface,
-                      height: 2,
+                      height: 1.4,
                     ),
                     preferBelow: false,
                     verticalOffset: 20,
@@ -314,12 +317,12 @@ class ProjectItemCard2 extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: context.textStyle.bodyMdMedium.copyWith(
                         color: context.theme.colorScheme.onSurface,
-                        height: 2,
+                        height: 1.4,
                       ),
                     ),
                   ),
 
-                  const Gap(16),
+                  const Gap(8),
                   Expanded(
                     child: ScrollbarTheme(
                       data: ScrollbarThemeData(
@@ -372,7 +375,7 @@ class ProjectItemCard2 extends StatelessWidget {
                     ),
                   ),
 
-                  const Gap(24),
+                  const Gap(6),
                   Align(
                     alignment: AlignmentDirectional.centerEnd,
                     child: Row(

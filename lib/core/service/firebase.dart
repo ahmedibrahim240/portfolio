@@ -38,6 +38,7 @@ class FirebaseAboutMeService {
         'phone': kAboutMe.phone,
         'cvLink': kAboutMe.cvLink,
         'summary': kAboutMe.summary,
+        'summaryHighlights': kAboutMe.summaryHighlights.map((e) => e.toJson()).toList(),
         'yearsOfExperience': kAboutMe.yearsOfExperience,
         'skills': kAboutMe.skills,
         'social': kAboutMe.social.toJson(),
@@ -111,6 +112,7 @@ class FirebaseAboutMeService {
         };
 
         return AboutMe.fromJson(combinedData);
+        // return kAboutMe;
       }
       return kAboutMe;
     } catch (e) {

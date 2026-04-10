@@ -62,6 +62,22 @@ class SocialLinks {
 }
 
 @JsonSerializable()
+class AboutHighlight {
+  final String title;
+  final String body;
+
+  const AboutHighlight({
+    required this.title,
+    required this.body,
+  });
+
+  factory AboutHighlight.fromJson(Map<String, dynamic> json) =>
+      _$AboutHighlightFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AboutHighlightToJson(this);
+}
+
+@JsonSerializable()
 class AboutMe {
   final String fullName;
   final String image;
@@ -72,7 +88,10 @@ class AboutMe {
   final String cvLink;
   final String phone;
   final SocialLinks social;
+  /// Short intro line; avoid embedded newlines so justified text does not stretch oddly.
   final String summary;
+  /// Gallery-style tiles under the hero intro (experience, impact, stack, etc.).
+  final List<AboutHighlight> summaryHighlights;
   final String yearsOfExperience;
   final List<String> skills;
   final List<Education> education;
@@ -91,6 +110,7 @@ class AboutMe {
     required this.phone,
     required this.social,
     required this.summary,
+    required this.summaryHighlights,
     required this.yearsOfExperience,
     required this.skills,
     required this.education,
@@ -131,16 +151,39 @@ class ProjectModels {
 
 // List of all projects across all experiences
 final List<ProjectModels> allProjects = [
+  // Wafrh
+  ProjectModels(
+    name: 'Wafrh',
+    period: '01/2026 - Present',
+    images: AssetsImagePath.getWafrahImages,
+    playStoreLink: 'https://play.google.com/store/apps/details?id=com.alexapps.salatak',
+    appStoreLink:
+        'https://apps.apple.com/us/app/wafrh-%D9%88%D9%81%D8%B1%D8%A9/id1529797452',
+    description:
+        '- Spearheaded the in-app delivery module, improving order processing efficiency by 15% through seamless order flows and enhanced UX.\n'
+        '- Implemented robust state handling for critical user journeys and integrated complex delivery APIs for better data synchronization.\n'
+        '- Improved app reliability and reduced crash rates by 20% by optimizing loading, empty, and error states.\n'
+        '- Managed localization and advanced map features for precise location tracking.',
+    technologies: [
+      'REST API',
+      'State Management: Bloc/Cubit',
+      'Google Maps',
+      'Localization',
+      'Performance Optimization',
+    ],
+  ),
   // Tayaar
   ProjectModels(
     name: 'Tayaar',
-    period: '04/2025 - Present',
+    period: '04/2025 - 8/2025',
     images: AssetsImagePath.getTayaarImages,
     playStoreLink: 'https://play.google.com/store/apps/details?id=com.betalab.tayaar',
     appStoreLink:
         'https://apps.apple.com/eg/app/tayaar-%D8%B7%D9%8A%D8%A7%D8%B1/id6747727724',
     description:
-        'An intelligent Delivery management system designed specifically for Salla platform merchants',
+        '- Architected an intelligent fleet management solution for Salla merchants, supporting the expansion of 50+ active stores.\n'
+        '- Integrated real-time Google Maps tracking and Firebase Push Notifications, increasing user engagement by 25%.\n'
+        '- Managed localization and advanced map features for precise location tracking.',
     technologies: [
       'REST API',
       "flavors",
@@ -149,6 +192,32 @@ final List<ProjectModels> allProjects = [
       'Biometric Login',
       'State Management: Bloc',
       'Firebase Push Notification',
+    ],
+  ),
+  // Jahiz
+  ProjectModels(
+    name: 'Jahiz',
+    period: '08/2025 - 01/2026',
+    images: AssetsImagePath.getJahizImages,
+    playStoreLink: 'https://play.google.com/store/apps/details?id=com.betalab.jahiz',
+    description:
+        '- Engineered a smart warehouse application that streamlined end-to-end operations, reducing picking errors by 30% via barcode scanning.\n'
+        '- Implemented state management with BLoC/Cubit, Hydrated BLoC, and immutable models using Freezed.\n'
+        '- Architected a feature-based structure with GetIt DI, Retrofit + Dio REST clients, and JSON Serialization.\n'
+        '- Integrated Firebase Cloud Messaging (push), Analytics, and Crashlytics.\n'
+        '- Utilized Hive for preferences and on-device storage.\n'
+        '- Supported barcode scanning with Camera and Honeywell enterprise scanners.\n'
+        '- Implemented biometric login, Arabic/English localization, dev/prod flavors, and responsive layouts.',
+    technologies: [
+      'REST API',
+      'State Management: Bloc/Cubit',
+      'Hydrated Bloc',
+      'Freezed',
+      'Firebase',
+      'Hive',
+      'Barcode Scanning',
+      'Biometric Login',
+      'Localization',
     ],
   ),
   // Try GC
@@ -160,7 +229,9 @@ final List<ProjectModels> allProjects = [
     playStoreLink:
         'https://play.google.com/store/apps/details?id=com.grandcommunity.influencer',
     appStoreLink: 'https://apps.apple.com/kw/app/elite-app/id6740461733',
-    description: 'Two apps in one app switching between them by user type after login',
+    description:
+        '- Produced three high-impact apps connecting brands with a network of 1,000+ influencers.\n'
+        '- Utilized GetX state management and embedded advanced Google Maps features, enabling real-time influencer discovery across 1,000+ registered users.',
     technologies: [
       'REST API',
       "flavors",
@@ -183,7 +254,8 @@ final List<ProjectModels> allProjects = [
         'https://play.google.com/store/apps/details?id=com.grandcommunity.elite',
     appStoreLink: 'https://apps.apple.com/kw/app/elite-app/id6740461733',
     description:
-        'android app in test mode \n Two apps in one app switching between them by user type after login',
+        '- Produced three high-impact apps connecting brands with a network of 1,000+ influencers.\n'
+        '- Utilized GetX state management and embedded advanced Google Maps features, enabling real-time influencer discovery across 1,000+ registered users.',
 
     technologies: [
       'REST API',
@@ -263,8 +335,7 @@ AboutMe kAboutMe = AboutMe(
   fullName: 'Ahmed Ibrahim',
   image: 'assets/me.jpeg',
   title: 'Sr. Flutter Developer',
-  cvLink:
-      "https://drive.google.com/file/d/1gajdKwPdXgdIkeQupTLJM8P6I_sALe0K/view?usp=sharing",
+  cvLink: "https://drive.google.com/file/d/1yQlld3jPL_h7suTWdEqvaUrdORMpPeaW/view",
   country: 'Egypt',
   city: 'Al Mansoura',
   email: 'ahmedibrahim150240@gmail.com',
@@ -276,10 +347,24 @@ AboutMe kAboutMe = AboutMe(
     whatsappUrl: 'https://wa.me//+201551016887',
   ),
   summary:
-      'Sr. Flutter Developer with 5+ years building high-quality Android and iOS apps. '
-      'Strong in clean architecture and state management (GetX/BLoC), integrating REST APIs, '
-      'Firebase, and Google Maps to ship scalable, maintainable features. '
-      'Clear communicator focused on UX, performance, and on-time delivery.',
+      'Senior Flutter Developer with 5+ years building high-performance Android and iOS apps — focused on scalable, client-centric delivery.',
+  summaryHighlights: const <AboutHighlight>[
+    AboutHighlight(
+      title: 'Experience',
+      body:
+          '5+ years shipping production Flutter apps with strong UX, performance, and release discipline.',
+    ),
+    AboutHighlight(
+      title: 'Impact',
+      body:
+          'Complex products including intelligent delivery (Tayaar) and donation platforms that processed 13M+ AED.',
+    ),
+    AboutHighlight(
+      title: 'Stack',
+      body:
+          'BLoC & GetX, live Google Maps tracking, biometric auth, Firebase (push, analytics, auth), REST APIs.',
+    ),
+  ],
   yearsOfExperience: '5+',
   skills: <String>[
     'Flutter',
@@ -305,10 +390,17 @@ AboutMe kAboutMe = AboutMe(
   ],
   experiences: [
     ExperienceModels(
-      title: 'Flutter Developer (part-time)',
+      title: 'Senior Flutter Developer',
+      company: 'Wafrah (SIT)',
+      location: 'Saudi Arabia',
+      period: '01/2026 - Present',
+      website: 'https://wafrahapp.com/',
+    ),
+    ExperienceModels(
+      title: 'Senior Flutter Developer',
       company: 'Beta Lab IT (LLC)',
       location: 'Saudi Arabia',
-      period: '04/2025 - Present',
+      period: '04/2025 - 08/2025',
       website: 'https://trytayaar.com/',
     ),
     ExperienceModels(

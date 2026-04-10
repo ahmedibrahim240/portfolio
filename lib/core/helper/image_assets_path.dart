@@ -1,6 +1,8 @@
 class AssetsImagePath {
   AssetsImagePath._();
   static const String imageTayaarAssetsRoot = "assets/tayaar/";
+  static const String imageJahizAssetsRoot = "assets/jahiz/";
+  static const String imageWafrahAssetsRoot = "assets/wafrah/";
   static const String imageTrygcAssetsRoot = "assets/trygc/";
   static const String imageEliteAssetsRoot = "assets/elite/";
   static const String imageIkharAssetsRoot = "assets/ikhar/";
@@ -11,6 +13,10 @@ class AssetsImagePath {
   //!jsonPaTh
   static List<String> get getTayaarImages =>
       List.generate(7, (index) => _getTayaarImgePath("${index + 1}"));
+  static List<String> get getJahizImages =>
+      List.generate(8, (index) => _getJahizImgePath("${index + 1}"));
+  static List<String> get getWafrahImages =>
+      List.generate(6, (index) => _getWafrahImgePath("${index + 1}"));
   static List<String> get getIkharImages =>
       List.generate(7, (index) => _getIkharImgePath("${index + 1}"));
   static List<String> get getTrygcImages =>
@@ -30,6 +36,14 @@ class AssetsImagePath {
 
   static String _getTayaarImgePath(String fileName) {
     return "$imageTayaarAssetsRoot$fileName.svg";
+  }
+
+  static String _getJahizImgePath(String fileName) {
+    return "$imageJahizAssetsRoot$fileName.svg";
+  }
+
+  static String _getWafrahImgePath(String fileName) {
+    return "$imageWafrahAssetsRoot$fileName.png";
   }
 
   static String _getTrygcImgePath(String fileName) {

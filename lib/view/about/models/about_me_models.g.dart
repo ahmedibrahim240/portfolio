@@ -51,6 +51,15 @@ Map<String, dynamic> _$SocialLinksToJson(SocialLinks instance) =>
       'whatsappUrl': instance.whatsappUrl,
     };
 
+AboutHighlight _$AboutHighlightFromJson(Map<String, dynamic> json) =>
+    AboutHighlight(
+      title: json['title'] as String,
+      body: json['body'] as String,
+    );
+
+Map<String, dynamic> _$AboutHighlightToJson(AboutHighlight instance) =>
+    <String, dynamic>{'title': instance.title, 'body': instance.body};
+
 AboutMe _$AboutMeFromJson(Map<String, dynamic> json) => AboutMe(
   projects: (json['projects'] as List<dynamic>)
       .map((e) => ProjectModels.fromJson(e as Map<String, dynamic>))
@@ -65,6 +74,9 @@ AboutMe _$AboutMeFromJson(Map<String, dynamic> json) => AboutMe(
   phone: json['phone'] as String,
   social: SocialLinks.fromJson(json['social'] as Map<String, dynamic>),
   summary: json['summary'] as String,
+  summaryHighlights: (json['summaryHighlights'] as List<dynamic>)
+      .map((e) => AboutHighlight.fromJson(e as Map<String, dynamic>))
+      .toList(),
   yearsOfExperience: json['yearsOfExperience'] as String,
   skills: (json['skills'] as List<dynamic>).map((e) => e as String).toList(),
   education: (json['education'] as List<dynamic>)
@@ -86,6 +98,7 @@ Map<String, dynamic> _$AboutMeToJson(AboutMe instance) => <String, dynamic>{
   'phone': instance.phone,
   'social': instance.social,
   'summary': instance.summary,
+  'summaryHighlights': instance.summaryHighlights,
   'yearsOfExperience': instance.yearsOfExperience,
   'skills': instance.skills,
   'education': instance.education,

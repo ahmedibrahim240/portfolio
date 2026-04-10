@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_portfolio/core/helper/app_size.dart';
 import 'package:my_portfolio/core/helper/extensions.dart';
+import 'package:my_portfolio/core/routing/routes.dart';
 import 'package:my_portfolio/view/about/models/about_me_models.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/data/models/app_menu_models.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_cubit.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/logic/scroll/scroll_cubit_state.dart';
 import 'package:my_portfolio/view/home/widget/app_bar/ui/app_menu.dart';
 
-import '../../../../../core/routing/routes.dart';
 import 'app_bar_drawer_icon.dart';
 
 class HomeAppBar extends StatelessWidget {
@@ -93,8 +93,13 @@ class _ContactMeButtonState extends State<ContactMeButton> {
         duration: const Duration(milliseconds: 200),
         transform: Matrix4.identity()..scale(_isHovered ? 1.05 : 1.0),
         child: OutlinedButton(
-          onPressed: () {
+          onPressed: () async {
             widget.scrollCubit.scrollToSection(AppRoutes.contact);
+            // FirebaseAboutMeService firebaseAboutMeService = FirebaseAboutMeService();
+            // await firebaseAboutMeService.uploadStructuredAboutMeData();
+            // ScaffoldMessenger.of(context).showSnackBar(
+            //   const SnackBar(content: Text('About Me data uploaded successfully')),
+            // );
           },
           style: OutlinedButton.styleFrom(
             side: BorderSide(
@@ -106,7 +111,7 @@ class _ContactMeButtonState extends State<ContactMeButton> {
                 : context.theme.textTheme.bodyLarge?.color,
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           ),
-          child: const Text('Contact Me'),
+          child: const FittedBox(fit: BoxFit.scaleDown, child: Text('Contact Me')),
         ),
       ),
     );
