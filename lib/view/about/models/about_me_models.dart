@@ -66,10 +66,7 @@ class AboutHighlight {
   final String title;
   final String body;
 
-  const AboutHighlight({
-    required this.title,
-    required this.body,
-  });
+  const AboutHighlight({required this.title, required this.body});
 
   factory AboutHighlight.fromJson(Map<String, dynamic> json) =>
       _$AboutHighlightFromJson(json);
@@ -88,8 +85,10 @@ class AboutMe {
   final String cvLink;
   final String phone;
   final SocialLinks social;
+
   /// Short intro line; avoid embedded newlines so justified text does not stretch oddly.
   final String summary;
+
   /// Gallery-style tiles under the hero intro (experience, impact, stack, etc.).
   final List<AboutHighlight> summaryHighlights;
   final String yearsOfExperience;
@@ -151,31 +150,9 @@ class ProjectModels {
 
 // List of all projects across all experiences
 final List<ProjectModels> allProjects = [
-  // Wafrh
-  ProjectModels(
-    name: 'Wafrh',
-    period: '01/2026 - Present',
-    images: AssetsImagePath.getWafrahImages,
-    playStoreLink: 'https://play.google.com/store/apps/details?id=com.alexapps.salatak',
-    appStoreLink:
-        'https://apps.apple.com/us/app/wafrh-%D9%88%D9%81%D8%B1%D8%A9/id1529797452',
-    description:
-        '- Spearheaded the in-app delivery module, improving order processing efficiency by 15% through seamless order flows and enhanced UX.\n'
-        '- Implemented robust state handling for critical user journeys and integrated complex delivery APIs for better data synchronization.\n'
-        '- Improved app reliability and reduced crash rates by 20% by optimizing loading, empty, and error states.\n'
-        '- Managed localization and advanced map features for precise location tracking.',
-    technologies: [
-      'REST API',
-      'State Management: Bloc/Cubit',
-      'Google Maps',
-      'Localization',
-      'Performance Optimization',
-    ],
-  ),
-  // Tayaar
   ProjectModels(
     name: 'Tayaar',
-    period: '04/2025 - 8/2025',
+    period: '04/2025 - Present',
     images: AssetsImagePath.getTayaarImages,
     playStoreLink: 'https://play.google.com/store/apps/details?id=com.betalab.tayaar',
     appStoreLink:
