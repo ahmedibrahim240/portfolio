@@ -152,7 +152,7 @@ class ProjectModels {
 final List<ProjectModels> allProjects = [
   ProjectModels(
     name: 'Tayaar',
-    period: '04/2025 - Present',
+    period: '04/2025 - 08/2025',
     images: AssetsImagePath.getTayaarImages,
     playStoreLink: 'https://play.google.com/store/apps/details?id=com.betalab.tayaar',
     appStoreLink:
@@ -226,7 +226,7 @@ final List<ProjectModels> allProjects = [
     name: 'Elite App',
     images: AssetsImagePath.getEliteImages,
 
-    period: '10/2024 - Present',
+    period: '10/2024 - 04/2025',
     playStoreLink:
         'https://play.google.com/store/apps/details?id=com.grandcommunity.elite',
     appStoreLink: 'https://apps.apple.com/kw/app/elite-app/id6740461733',
@@ -355,7 +355,27 @@ AboutMe kAboutMe = AboutMe(
     'State Management',
     'GetX',
     'BLoC',
+    'Cubit',
+    'Riverpod',
+    'Hydrated BLoC',
+    'GetIt',
+    'Freezed',
     'REST API',
+    'Dio',
+    'Retrofit',
+    'JSON Serialization',
+    'JWT-based token auth',
+    'Biometric Login',
+    'Hive',
+    'Shared Preferences',
+    'UI',
+    'UI/UX',
+    'Figma',
+    'Figma MCP',
+    'Java',
+    'Kotlin',
+    'Cursor AI',
+    'Claude AI',
   ],
   education: <Education>[
     const Education(
@@ -368,23 +388,16 @@ AboutMe kAboutMe = AboutMe(
   experiences: [
     ExperienceModels(
       title: 'Senior Flutter Developer',
-      company: 'Wafrah (SIT)',
-      location: 'Saudi Arabia',
-      period: '01/2026 - Present',
-      website: 'https://wafrahapp.com/',
-    ),
-    ExperienceModels(
-      title: 'Senior Flutter Developer',
       company: 'Beta Lab IT (LLC)',
       location: 'Saudi Arabia',
-      period: '04/2025 - 08/2025',
+      period: '04/2025 - Present',
       website: 'https://trytayaar.com/',
     ),
     ExperienceModels(
       title: 'Flutter Developer',
       company: 'Grand Community',
       location: 'Mansoura, Egypt',
-      period: '07/2023 - Present',
+      period: '07/2023 - 04/2025',
       website: 'https://grand-community.com/en',
     ),
     ExperienceModels(
